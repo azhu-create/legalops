@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPX Power — Ultimate Legal Ops Playbook</title>
+<style>
+  :root {
+    --c-ebilling: #3B82F6;    /* Blue for Finance/Billing */
+    --c-automation: #F59E0B;  /* Orange for Workflows/Intake */
+    --c-transaction: #10B981; /* Green for Deals/M&A */
+    --c-project: #8B5CF6;     /* Purple for PM/Meetings */
+    --c-archive: #6B7280;     /* Gray for Storage */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  body { background: #F3F4F6; color: #111827; padding: 2rem; line-height: 1.6; }
+  .wrap { max-width: 1400px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+
+  .header { border-bottom: 2px solid #E5E7EB; padding-bottom: 1.5rem; margin-bottom: 2rem; text-align: center; }
+  .subtitle { font-size: 13px; color: #6B7280; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; font-weight: 700; }
+  .title { font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -0.02em; }
+
+  /* Navigation */
+  .nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; background: #F9FAFB; padding: 1rem; border-radius: 12px; border: 1px solid #E5E7EB; justify-content: center;}
+  .nav button { padding: 10px 18px; border-radius: 8px; border: none; background: transparent; color: #4B5563; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .nav button:hover { background: #E5E7EB; color: #111827; }
+  .nav button.active { background: #111827; color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+  /* Content Sections */
+  .sec { display: none; animation: fadeIn 0.3s ease-in-out; }
+  .sec.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  h2 { font-size: 24px; font-weight: 800; margin: 2rem 0 1rem 0; color: #111827; border-bottom: 3px solid #F3F4F6; padding-bottom: 0.5rem; }
+  h3 { font-size: 18px; font-weight: 700; margin: 1.5rem 0 1rem 0; color: #1F2937; }
+  p, li { font-size: 15px; color: #374151; margin-bottom: 0.75rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+  
+  .callout { padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; font-weight: 500; font-size: 15px; }
+  .co-blue { border-left: 4px solid var(--c-ebilling); background: #EFF6FF; color: #1E40AF; }
+  .co-yellow { border-left: 4px solid var(--c-automation); background: #FFFBEB; color: #92400E; }
+  .co-green { border-left: 4px solid var(--c-transaction); background: #ECFDF5; color: #065F46; }
+
+  /* Grids & Cards */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;}
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;}
+  .card { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+  .card h4 { font-size: 16px; margin-top: 0; margin-bottom: 0.5rem; }
+
+  /* Visual Workflows */
+  .dashboard { background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+  .workflow-row { display: flex; gap: 1.5rem; align-items: stretch; }
+  .workflow-stage { flex: 1; display: flex; flex-direction: column; position: relative; }
+  .workflow-stage:not(:last-child)::after { content: '➔'; font-size: 2rem; color: #D1D5DB; position: absolute; right: -1.25rem; top: 40%; transform: translateY(-50%); z-index: 10;}
+  .stage-box { width: 100%; border-radius: 12px; padding: 1.5rem; background: #FFFFFF; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); height: 100%; }
+  .stage-title { font-weight: 800; font-size: 16px; margin-bottom: 1rem; color: #111827; }
+  
+  .tool-tag { display: inline-block; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 800; margin-bottom: 1rem; border: 1px solid transparent; }
+  .tool-brightflag { background: #DBEAFE; color: #1E40AF; border-color: #BFDBFE;}
+  .tool-stampli { background: #EDE9FE; color: #5B21B6; border-color: #DDD6FE;}
+  .tool-checkbox { background: #FEF3C7; color: #92400E; border-color: #FDE68A;}
+  .tool-evisort { background: #D1FAE5; color: #065F46; border-color: #A7F3D0;}
+  .tool-wrike { background: #E0E7FF; color: #3730A3; border-color: #C7D2FE;}
+  .tool-fellow { background: #FCE7F3; color: #9D2463; border-color: #FBCFE8;}
+  .tool-firmex { background: #F3F4F6; color: #374151; border-color: #D1D5DB;}
+  .tool-litera { background: #FEE2E2; color: #991B1B; border-color: #FECACA;}
+  .tool-docusign { background: #D1FAE5; color: #059669; border-color: #A7F3D0;}
+  .tool-archive { background: #F3F4F6; color: #374151; border-color: #D1D5DB;}
+
+  .your-action { margin-top: 1rem; padding: 1rem; background: #F0FDF4; border-radius: 8px; font-size: 13.5px; border: 1px solid #A7F3D0; }
+  .your-action strong { color: #047857; display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em;}
+
+  /* Simulators */
+  .simulator { border: 2px solid #E5E7EB; border-radius: 12px; background: #FFF; padding: 2rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin: 2rem 0; }
+  .sim-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #F3F4F6; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+  .sim-title { font-size: 18px; font-weight: 800; color: #111827;}
+  .sim-status { padding: 6px 14px; font-size: 12px; font-weight: 800; border-radius: 16px; text-transform: uppercase; letter-spacing: 0.05em;}
+  .sim-status-pending { background: #FEF3C7; color: #92400E; }
+  .sim-status-approved { background: #D1FAE5; color: #065F46; }
+  .sim-status-escalated { background: #FEE2E2; color: #991B1B; }
+  
+  .sim-field { margin-bottom: 1.5rem; }
+  .sim-label { display: block; font-size: 12px; font-weight: 800; color: #4B5563; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;}
+  .sim-value, .sim-select { width: 100%; font-size: 14px; color: #111827; background: #F9FAFB; padding: 12px; border-radius: 8px; border: 1px solid #D1D5DB; font-family: inherit;}
+  .sim-actions { text-align: right; margin-top: 2rem; border-top: 2px solid #F3F4F6; padding-top: 1.5rem; }
+  .sim-btn { padding: 12px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 14px;}
+  .sim-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary { background: var(--c-ebilling); color: #fff; }
+  .btn-secondary { background: var(--c-automation); color: #fff; }
+  .btn-reject { background: #F3F4F6; color: #374151; border: 1px solid #D1D5DB; margin-left: 0.5rem; }
+
+  pre { background: #1F2937; color: #F9FAFB; padding: 1.5rem; border-radius: 12px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 13.5px; line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .workflow-row, .grid-2, .grid-3 { grid-template-columns: 1fr; flex-direction: column; }
+    .workflow-stage:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -2rem; transform: translateX(50%); }
+    .workflow-stage { margin-bottom: 2rem; }
+    .sim-content-grid { grid-template-columns: 1fr; }
+  }
+  .sim-content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header">
+    <div class="subtitle">IPX Power · Legal Operations</div>
+    <h1 class="title">The Ultimate Onboarding Playbook</h1>
+    <p style="margin-top:0.5rem; color:#6B7280; font-size: 15px;">Your interactive guide to systems, processes, and strategic goals.</p>
+  </div>
+
+  <div class="nav" id="nav"></div>
+  <div id="content"></div>
+</div>
+
+<script>
+// Tab Definitions
+const tabs = [
+  { id: 'mandate', label: '1. Role & Scope' },
+  { id: 'pillar1', label: '2. Pillar 1: eBilling' },
+  { id: 'pillar2', label: '3. Pillar 2: Automation' },
+  { id: 'checkbox', label: '4. The Checkbox Initiative' },
+  { id: 'transactions', label: '5. M&A Deal Flow' },
+  { id: 'techstack', label: '6. Tech Stack Directory' },
+  { id: 'terminology', label: '7. Concepts & Visuals' },
+  { id: 'markets', label: '8. Energy Markets' },
+  { id: 'policies', label: '9. Policies & OKRs' }
+];
+
+// Content for each tab
+const sections = {
+
+mandate: `
+  <h2>Your Core Mandate: The Systems Owner</h2>
+  <div class="callout co-blue">
+    You are the <strong>operational architect and financial gatekeeper</strong> for the IPX legal department. You do not practice law, and you do not do the manual, nitty-gritty data entry (paralegals handle that). Your mandate is to design the systems, automate the workflows, maintain contract visibility, and protect IPX's financial boundaries.
+  </div>
+
+  <h3>Estimated Role & Scope Breakdown</h3>
+  <div style="display: flex; width: 100%; background: #F3F4F6; border-radius: 8px; height: 50px; overflow: hidden; margin: 1.5rem 0;">
+    <div style="width: 50%; background: var(--c-ebilling); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size:15px;">eBilling & Finance (50%)</div>
+    <div style="width: 40%; background: var(--c-automation); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size:15px;">Automation Projects (40%)</div>
+    <div style="width: 10%; background: var(--c-transaction); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size:15px;">Misc/Deals (10%)</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-top: 4px solid var(--c-ebilling);">
+        <h3 style="color: var(--c-ebilling); margin-top:0;">PILLAR 1: eBilling & Financial Enforcement (50%)</h3>
+        <p>You are the gatekeeper for outside counsel spend. You manage <strong>Brightflag</strong> and <strong>Stampli</strong>. You enforce UTBMS billing guidelines, lock in Timekeeper Rates, audit LEDES invoices, and ensure seamless financial data handoffs to AP/Finance to support budget dashboards.</p>
+    </div>
+
+    <div class="card" style="border-top: 4px solid var(--c-automation);">
+        <h3 style="color: var(--c-automation); margin-top:0;">PILLAR 2: Workflow Revamp & Automation (40%)</h3>
+        <p>You are the technical architect. You are tasked with eliminating manual bottlenecks by designing intake doors in <strong>Checkbox</strong>, optimizing <strong>Evisort</strong> routing, and managing massive tech rollout projects using <strong>Wrike</strong> and <strong>Fellow</strong>.</p>
+    </div>
+
+    <div class="card" style="border-top: 4px solid var(--c-transaction);">
+        <h3 style="color: var(--c-transaction); margin-top:0;">M&A & Deal Management (5%)</h3>
+        <p>During massive strategic transactions (M&A, Project Finance), you manage the tech layer. You set up the Virtual Data Room in <strong>Firmex</strong>, track closing checklists in <strong>Litera Transact</strong>, run document comparisons in <strong>Litera Compare</strong>, and manage executions.</p>
+    </div>
+
+    <div class="card" style="border-top: 4px solid var(--c-archive);">
+        <h3 style="color: var(--c-archive); margin-top:0;">Records & Repository Admin (5%)</h3>
+        <p>You maintain the official forms repository in <strong>Google Drive</strong>. You ensure that fully executed agreements are safely stored digitally in Evisort or physically sent to <strong>Iron Mountain</strong>. <em>(Note: Entity management is done by paralegals in hCue)</em>.</p>
+    </div>
+  </div>
+`,
+
+pillar1: `
+  <h2>Playbook: eBilling & Financial Enforcement</h2>
+  
+  <div class="dashboard">
+    <div class="workflow-row">
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">1. Matter Setup</h3>
+          <span class="tool-tag tool-brightflag">Brightflag</span>
+          <p>Outside counsel is engaged. You must build the "folder" for them to bill against.</p>
+          <div class="your-action"><strong>Your Action:</strong> Review the Engagement Letter. Assign the exact <strong>Project Code</strong>. Lock in the approved budget and Timekeeper Rates.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">2. Invoice Audit</h3>
+          <span class="tool-tag tool-brightflag">Brightflag</span>
+          <p>Firm submits a monthly LEDES invoice. Brightflag's AI scans the UTBMS codes.</p>
+          <div class="your-action"><strong>Your Action:</strong> Review AI flags. Reject unauthorized clerical/admin tasks, excessive travel, or rates billed above the locked cap.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">3. AP Handoff</h3>
+          <span class="tool-tag tool-stampli">Stampli</span>
+          <p>The clean, approved invoice flows out of Legal into Accounts Payable.</p>
+          <div class="your-action"><strong>Your Action:</strong> Ensure the invoice bridges successfully to Stampli with correct GL and Project mapping for the ERP system.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Critical "Must-Knows" for eBilling</h3>
+  <div class="grid-2">
+      <div class="card">
+          <h4 style="color:#1E40AF;">Timekeeper Rates & Redlining</h4>
+          <p><strong>The Pre-Approval Rule:</strong> No Rate, No Pay. Timekeepers (Partners, Associates, Paralegals) must be approved by name and rate in advance.</p>
+          <p><strong>Redlining:</strong> When a firm sends an Engagement Letter (EL), <strong>you personally redline it</strong>. You strike out their standard administrative fees (travel, copying) and write in the IPX rate caps. This signed EL gives you the authority to reject bad invoices later.</p>
+      </div>
+      <div class="card">
+          <h4 style="color:#1E40AF;">Matters & Project Codes</h4>
+          <p>A <strong>Matter</strong> is a digital folder in Brightflag. To ensure accounting accuracy, you must name the Matter using a strict IPX <strong>Project Code</strong>.</p>
+          <p><strong>Structure:</strong> <code>[Project Code] - [Technology] - [Scope]</code></p>
+          <ul style="font-size:13px; margin-top:10px;">
+              <li><code>ME01-PV-Environmental</code> (Meitner Solar Phase 1)</li>
+              <li><code>DAR03-BESS-Permitting</code> (Darden III Battery)</li>
+              <li><code>PH01-WPP-Interconnect</code> (Panhandle Wind)</li>
+          </ul>
+      </div>
+  </div>
+  
+  <div class="card" style="border-left: 4px solid #EF4444; background: #FEF2F2;">
+    <h4 style="color: #991B1B; margin-top:0;">The Rules on Rate Increases</h4>
+    <p style="margin-bottom:0;">Firms can only request rate increases <strong>once per year</strong> between <strong>December 1st and January 31st</strong>. Mid-year requests are automatically rejected (except for specific, documented associate promotions).</p>
+  </div>
+
+  <h3 style="margin-top: 3rem;">INTERACTIVE SIMULATOR: Brightflag Matter Setup</h3>
+  <p>Practice locking in the rules. If you set this up correctly, Brightflag's AI catches the errors for you.</p>
+  
+  <div class="simulator" id="bf-simulator">
+    <div class="sim-header">
+      <div class="sim-title">Incoming Matter Request</div>
+      <div class="sim-status sim-status-pending" id="bf-status">Pending Ops Setup</div>
+    </div>
+    <div class="sim-content-grid">
+      <div>
+        <div class="sim-field"><span class="sim-label">Law Firm</span><div class="sim-value">Latham & Watkins LLP</div></div>
+        <div class="sim-field"><span class="sim-label">Proposed Matter Name</span><div class="sim-value">Meitner Solar Phase 1 General Counsel Advice</div></div>
+        <div class="sim-field">
+            <span class="sim-label">Assign Exact Project Code</span>
+            <select class="sim-select" id="bf-proj-code">
+                <option value="">-- Select Code --</option>
+                <option value="ME01-PV">ME01-PV (Meitner Solar)</option>
+                <option value="QA01-BESS">QA01-BESS (Quantum I Battery)</option>
+            </select>
+        </div>
+      </div>
+      <div>
+        <div class="sim-field"><span class="sim-label">Firm Proposed Partner Rate</span><div class="sim-value" style="color: #991B1B; font-weight:bold; border-color: #FECACA; background: #FEF2F2;">$950.00 / hr (Exceeds IPX Cap)</div></div>
+        <div class="sim-field">
+            <span class="sim-label">Enforce IPX Rate Cap</span>
+            <select class="sim-select" id="bf-rate">
+                <option value="">-- Select Action --</option>
+                <option value="approve">Accept Firm Rate ($950/hr)</option>
+                <option value="redline">Redline EL down to IPX Cap ($750/hr)</option>
+            </select>
+        </div>
+        <div class="sim-field"><span class="sim-label">Budget Allocation</span><div class="sim-value">$150,000.00 USD</div></div>
+      </div>
+    </div>
+    <div class="sim-actions">
+      <button class="sim-btn btn-primary" onclick="runBrightflagSim()">Lock Guardrails & Approve</button>
+      <button class="sim-btn btn-reject" onclick="resetBrightflagSim()">Reset</button>
+    </div>
+    <div id="bf-feedback" style="margin-top: 1.5rem; font-weight: 700; font-size: 15px; text-align: center; padding: 10px; border-radius: 8px; display: none;"></div>
+  </div>
+`,
+
+pillar2: `
+  <h2>Playbook: Automation & Intake (Pillar 2)</h2>
+  
+  <div class="dashboard">
+    <div class="workflow-row">
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">1. Plan & Align</h3>
+          <span class="tool-tag tool-wrike">Wrike</span>
+          <span class="tool-tag tool-fellow">Fellow</span>
+          <p>Identify a manual bottleneck. Create the project plan, map the steps, and hold alignment meetings with the legal team.</p>
+          <div class="your-action"><strong>Your Action:</strong> Track project milestones in Wrike. Use Fellow for meeting agendas and documenting decisions.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">2. Build the Door</h3>
+          <span class="tool-tag tool-checkbox">Checkbox</span>
+          <p>Design a self-service intake form. (Note: Checkbox is currently in exploration, not yet deployed).</p>
+          <div class="your-action"><strong>Your Action:</strong> Build conditional logic (e.g., questions that trigger different contract templates or routing paths).</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">3. Automate Routing</h3>
+          <span class="tool-tag tool-evisort">Evisort</span>
+          <p>Connect the intake form to the CLM system to automatically route contracts to the right people based on the Signing Authority Matrix.</p>
+          <div class="your-action"><strong>Your Action:</strong> Program Option 1 (Fast-Track) vs Option 2 (Escalation) logic into the routing rules.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Escalations: "Option 2" Logic</h3>
+  <div class="card">
+    <p>A huge part of your job in building Checkbox workflows is programming the system to know when a contract is "safe" vs. "risky." You do this by building branching logic based on the <strong>Approved Playbook</strong>.</p>
+    <ul>
+        <li><strong>Option 1 (Fast-Track):</strong> The business user selects the standard IPX template. The workflow auto-generates the document and sends it directly for signature. Paralegals handle it.</li>
+        <li><strong>Option 2 (Escalation):</strong> The counterparty insists on using their own <strong>CP Form</strong> (Counterparty Form) OR they request redlines that fall outside our pre-approved playbook limits (e.g., unlimited liability). <strong>The workflow you build must automatically flag this as an exception and route it directly to a senior attorney/GC for review.</strong></li>
+    </ul>
+  </div>
+`,
+
+checkbox: `
+  <h2>The Checkbox Initiative: Your Automation Roadmap</h2>
+  <div class="callout co-yellow">
+    <strong>Checkbox is not currently in use.</strong> Your Pillar 2 mandate is to explore its capabilities and lead the charge in implementing it. Below are the primary automation targets you will build.
+  </div>
+
+  <h3>High-Impact Automation Opportunities</h3>
+  <div class="grid-3">
+    <div class="card">
+        <h4 style="color:#92400E;">1. NDA Self-Service</h4>
+        <p><strong>Current State:</strong> Business emails requests; paralegals draft manually. Slow and impossible to track.</p>
+        <p><strong>Checkbox Future State:</strong> Business user fills out a form. An NDA is instantly generated and sent to DocuSign. Legal only sees exceptions.</p>
+    </div>
+    <div class="card">
+        <h4 style="color:#92400E;">2. SOW to MSA Linking</h4>
+        <p><strong>Current State:</strong> SOWs arrive unlinked, requiring manual Evisort searches by paralegals.</p>
+        <p><strong>Checkbox Future State:</strong> User selects the MSA from a dropdown in Checkbox. The SOW is automatically linked, and the budget is checked against the MSA terms.</p>
+    </div>
+    <div class="card">
+        <h4 style="color:#92400E;">3. Automated Escalation</h4>
+        <p><strong>Current State:</strong> Paralegals manually review redlines to see if they violate playbooks.</p>
+        <p><strong>Checkbox Future State:</strong> The form asks if the counterparty is using their own paper ("CP Form"). If yes, it auto-routes to a Senior Attorney (Option 2).</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 3rem;">INTERACTIVE SIMULATOR: Checkbox Logic Engine</h3>
+  <p>Test the intake logic you would build in Checkbox. See how user choices trigger Option 1 or Option 2 routing.</p>
+  
+  <div class="simulator" id="cb-simulator">
+    <div class="sim-header">
+      <div class="sim-title">Checkbox: NDA Request Form (Business User View)</div>
+      <div class="sim-status" style="background:#E5E7EB; color:#374151;" id="cb-status">Awaiting Submission</div>
+    </div>
+    <div class="sim-content-grid">
+      <div>
+        <div class="sim-field"><span class="sim-label">Counterparty Name</span><div class="sim-value">Apex Construction Firm</div></div>
+        <div class="sim-field">
+            <span class="sim-label">Contract Template Selection</span>
+            <select class="sim-select" id="cb-template">
+                <option value="ipx">Use Standard IPX Power Mutual NDA</option>
+                <option value="cp">Use Counterparty's Custom NDA Form</option>
+            </select>
+        </div>
+      </div>
+      <div>
+        <div class="sim-field">
+            <span class="sim-label">Redline Status</span>
+            <select class="sim-select" id="cb-redline">
+                <option value="none">No Redlines (Clean Template)</option>
+                <option value="within">Redlines fall strictly within Approved Playbook</option>
+                <option value="outside">Redlines fall OUTSIDE Approved Playbook</option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <div class="sim-actions">
+      <button class="sim-btn btn-secondary" onclick="runCheckboxSim()">Submit Request</button>
+      <button class="sim-btn btn-reject" onclick="resetCheckboxSim()">Reset</button>
+    </div>
+    <div id="cb-feedback" style="margin-top: 1.5rem; font-weight: 700; font-size: 15px; text-align: center; padding: 10px; border-radius: 8px; display: none;"></div>
+  </div>
+`,
+
+transactions: `
+  <h2>Dashboard: M&A & Financing Deal Flow</h2>
+  <div class="callout co-green">
+    During strategic corporate events (acquisitions, major project financing), the volume of documents is massive. Your role shifts to Transaction Coordinator, ensuring the tech stack supports a smooth closing.
+  </div>
+  
+  <div class="dashboard">
+    <div class="workflow-row">
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">1. Due Diligence</h3>
+          <span class="tool-tag tool-firmex">Firmex (VDR)</span>
+          <p>Securely sharing thousands of files with external banks or buyers.</p>
+          <div class="your-action"><strong>Your Action:</strong> Set up the Virtual Data Room. Create folder schemas and strictly manage user access/permissions to protect IP.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">2. Closing Checklist</h3>
+          <span class="tool-tag tool-litera">Litera Transact</span>
+          <p>Tracking the status of 100+ documents required to close the deal.</p>
+          <div class="your-action"><strong>Your Action:</strong> Build the digital checklist. Track every document's status from "Draft" to "Final" to eliminate massive email chains.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">3. Final Verification</h3>
+          <span class="tool-tag tool-litera">Litera Compare</span>
+          <p>Ensuring the document they sign is the exact document we agreed to.</p>
+          <div class="your-action"><strong>Your Action:</strong> Run a final redline/blackline comparison between the final draft and the execution copy to catch rogue edits.</div>
+        </div>
+      </div>
+      <div class="workflow-stage">
+        <div class="stage-box">
+          <h3 class="stage-title">4. Execution & Archive</h3>
+          <span class="tool-tag tool-docusign">DocuSign</span>
+          <span class="tool-tag tool-archive">Iron Mountain</span>
+          <p>Getting signatures and storing the final records.</p>
+          <div class="your-action"><strong>Your Action:</strong> Send final packets via DocuSign. Ensure original "wet ink" deeds/certificates are shipped to Iron Mountain.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+`,
+
+techstack: `
+  <h2>The Complete Legal Tech Stack Glossary</h2>
+  <div class="callout" style="background:#F9FAFB; border:1px solid #E5E7EB;">
+    Understanding exactly <strong>who</strong> uses <strong>what</strong> is vital. You are the Admin/Systems Owner for most of these platforms, while Paralegals and Attorneys are the end-users.
+  </div>
+
+  <div class="grid-3">
+      <div class="card">
+        <h4 style="color:var(--c-ebilling);">Brightflag</h4>
+        <p><strong>What it is:</strong> eBilling & spend management platform that ingests LEDES invoices.</p>
+        <p><strong>Your Role:</strong> Admin & Auditor. You own Matter setup, lock in timekeeper rates, and audit AI-flagged UTBMS violations.</p>
+      </div>
+      
+      <div class="card">
+        <h4 style="color:var(--c-ebilling);">Stampli</h4>
+        <p><strong>What it is:</strong> Accounts Payable automation bridge to the ERP.</p>
+        <p><strong>Your Role:</strong> You ensure invoices pass from Brightflag to Stampli with correct GL and Project Codes.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-automation);">Evisort</h4>
+        <p><strong>What it is:</strong> Contract Lifecycle Management (CLM) & single source of truth.</p>
+        <p><strong>Your Role:</strong> Workflow Designer. You optimize routing rules. <em>(Paralegals handle the daily data entry and setting date alerts).</em></p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-automation);">Checkbox</h4>
+        <p><strong>What it is:</strong> No-code workflow automation and intake doors.</p>
+        <p><strong>Your Role:</strong> Future-State Architect. Your Pillar 2 goal is to explore, design, and implement Checkbox to replace email requests.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-project);">Wrike</h4>
+        <p><strong>What it is:</strong> Project management platform.</p>
+        <p><strong>Your Role:</strong> Project Manager. You use this to plan timelines and track tasks for your automation rollouts.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-project);">Fellow</h4>
+        <p><strong>What it is:</strong> Meeting management app.</p>
+        <p><strong>Your Role:</strong> Meeting Facilitator. You build agendas, record decisions, and assign action items during stakeholder alignments.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-transaction);">Litera Transact</h4>
+        <p><strong>What it is:</strong> Deal closing checklist workspace.</p>
+        <p><strong>Your Role:</strong> Transaction Coordinator. You manage the digital closing binder and document status during M&A.</p>
+      </div>
+      
+      <div class="card">
+        <h4 style="color:var(--c-transaction);">Litera Compare</h4>
+        <p><strong>What it is:</strong> Powerful redline document comparison tool.</p>
+        <p><strong>Your Role:</strong> Quality Control. You use it to compare drafts to final execution copies to prevent unauthorized changes.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-transaction);">Firmex</h4>
+        <p><strong>What it is:</strong> Virtual Data Room (VDR).</p>
+        <p><strong>Your Role:</strong> VDR Admin. You create folder structures and manage strict user permissions during due diligence.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-archive);">Iron Mountain</h4>
+        <p><strong>What it is:</strong> Physical records storage facility.</p>
+        <p><strong>Your Role:</strong> Coordinator. You ensure highly sensitive "wet ink" originals (deeds, certs) are shipped for safe archiving.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="color:var(--c-archive);">hCue (CT Corp)</h4>
+        <p><strong>What it is:</strong> Corporate entity management platform.</p>
+        <p><strong>Your Role:</strong> None directly. <em>(Corporate paralegals use this to maintain formation docs and subsidiary lists. SSO via IPX email.)</em></p>
+      </div>
+      
+      <div class="card">
+        <h4 style="color:var(--c-transaction);">DocuSign</h4>
+        <p><strong>What it is:</strong> e-Signature platform.</p>
+        <p><strong>Your Role:</strong> You ensure signature workflows enforce the internal Signing Authority Matrix.</p>
+      </div>
+  </div>
+`,
+
+terminology: `
+  <h2>Core Concepts & Contract Artifacts</h2>
+
+  <h3>1. Contract Architecture (MSA & SOW)</h3>
+  <p>The Master Services Agreement (MSA) acts as the legal "umbrella," while Statements of Work (SOWs) act as specific "jobs" underneath it. You must ensure incoming Brightflag invoices map exactly to the budget authorized in the SOW.</p>
+  <pre>
+=============================================================================
+                  MASTER SERVICES AGREEMENT (MSA)
+                            "The Umbrella"
+=============================================================================
+ • Value: $0 (Typically). Establishes rules (Indemnity, IP, Law).
+                                  |
+                                  | (Governs all future work)
+                                  V
+-----------------------------------------------------------------------------
+        |                                 |                                 |
++----------------+                +----------------+                +----------------+
+|  SOW #001      |                |  SOW #002      |                |  SOW #003      |
+| "The Job"      |                | "The Job"      |                | "The Job"      |
++----------------+                +----------------+                +----------------+
+| Scope: Env.    |                | Scope: Geo-    |                | Scope: Sub-    |
+| Cost: $45,000  |                | Cost: $85,000  |                | Cost: $210,000 |
+| *Ties to MSA*  |                | *Ties to MSA*  |                | *Ties to MSA*  |
++----------------+                +----------------+                +----------------+
+  </pre>
+
+  <h3>2. Master Terminology Glossary</h3>
+  <div class="card">
+    <table style="width:100%; border-collapse: collapse; text-align:left;">
+      <tr style="border-bottom: 2px solid #E5E7EB;"><th style="padding:12px 0; width:15%;">Term</th><th>Definition & Your Context</th></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>Redline</strong></td><td>Editing a contract with tracked changes. <strong>Context:</strong> You will personally redline Engagement Letters to insert IPX's strict billing guidelines.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>LEDES / UTBMS</strong></td><td>The required file format (LEDES) and embedded codes (UTBMS) for all outside counsel invoices. <strong>Context:</strong> You must reject any invoice sent as a spreadsheet/PDF.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>LC</strong></td><td>Letter of Credit. A bank guarantee used as collateral. High risk. <strong>Context:</strong> Ensure paralegals set a 90-day Evisort alert before it expires, or counterparties can draw the cash.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>MPD</strong></td><td>Material Project Document. The "Holy Grail" contracts (PPAs, LGIAs, EPCs) required for project financing.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>PPA</strong></td><td>Power Purchase Agreement. The core revenue contract where IPX sells power to an entity.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>LGIA</strong></td><td>Large Generator Interconnection Agreement. Contract with the grid operator. Missing financial deadlines kills the project.</td></tr>
+      <tr style="border-bottom: 1px solid #E5E7EB;"><td style="padding:12px 0;"><strong>EPC</strong></td><td>Engineering, Procurement, Construction. The contract with the firm physically building the solar/battery plant.</td></tr>
+      <tr><td style="padding:12px 0;"><strong>Accruals</strong></td><td>Estimates submitted by law firms mid-month for work completed but not yet billed. <strong>Context:</strong> Helps Corporate Finance close their monthly books accurately.</td></tr>
+    </table>
+  </div>
+`,
+
+markets: `
+  <h2>Energy Markets & Milestones</h2>
+  <div class="callout co-green">Understanding <em>how</em> IPX makes money helps you understand <em>why</em> the contract deadlines tracked in Evisort are so critical to the business.</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="margin-top:0;">CAISO (California) - "Double-Dip"</h3>
+      <p>IPX gets paid for <strong>Energy</strong> (actual electrons) AND <strong>Capacity / RA (Resource Adequacy)</strong>, which is a flat monthly fee just for guaranteeing the plant is ready to deploy power.</p>
+      <p><strong>Legal Ops Context:</strong> Missing <strong>FCDS</strong> (Full Capacity Deliverability Status) milestones in contracts means IPX loses our guaranteed capacity checks.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">ERCOT (Texas) - "Volatility"</h3>
+      <p>This is an <strong>Energy Only (EO)</strong> market. No capacity payments. We make money purely on arbitrage (charging batteries when power is cheap, discharging during price spikes).</p>
+      <p><strong>Legal Ops Context:</strong> <strong>RTE (Round Trip Efficiency)</strong> of batteries is crucial. You ensure contracts track "Augmentation Triggers" to force vendors to replace degraded battery cells on time.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 2rem;">The Chronological Project Milestones</h3>
+  <p>These are the life-or-death dates the legal department tracks for a project.</p>
+  <div style="background: #fff; padding: 1.5rem; border-radius: 12px; border: 1px solid #E5E7EB; overflow-x:auto;">
+    <div style="display:flex; justify-content:space-between; text-align:center; font-weight:bold; font-size:13px; min-width:800px;">
+        <div style="flex:1;">LNTP<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(Early spend cap)</span></div>
+        <div style="color:#9CA3AF; padding:0 10px;">→</div>
+        <div style="flex:1;">Financial Close<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(Loan signs)</span></div>
+        <div style="color:#9CA3AF; padding:0 10px;">→</div>
+        <div style="flex:1;">Full NTP<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(Construction starts)</span></div>
+        <div style="color:#9CA3AF; padding:0 10px;">→</div>
+        <div style="flex:1; color:#D97706;">ISD (Import)<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(Grid powers site up)</span></div>
+        <div style="color:#9CA3AF; padding:0 10px;">→</div>
+        <div style="flex:1; color:#059669;">Initial Sync<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(First test export)</span></div>
+        <div style="color:#9CA3AF; padding:0 10px;">→</div>
+        <div style="flex:1; color:#059669;">COD (Export)<br><span style="font-weight:normal; font-size:11px; color:#6B7280;">(Commercial Revenue!)</span></div>
+    </div>
+  </div>
+  <div class="callout" style="border-left: 4px solid #EF4444; background: #FEF2F2; color: #991B1B;">
+    <strong>CRITICAL:</strong> Missing the <strong>COD (Commercial Operation Date)</strong> triggers massive Liquidated Damages (LDs). The paralegal team MUST have airtight 180/90/60/30 day Evisort alerts set up.
+  </div>
+`,
+
+policies: `
+  <h2>Policies, Resources & Team OKRs</h2>
+  
+  <div class="grid-2">
+    <div class="card">
+        <h3 style="margin-top:0; color: #1E40AF;">Your "Must-Know" Policies</h3>
+        <p style="font-size:13px; margin-bottom:1rem;">These directly govern your Pillar 1 and Pillar 2 workflows.</p>
+        <ul style="font-size:14px;">
+            <li><a href="https://drive.google.com/a/ipxpower.com/open?id=1XbiN326XMZHTqtc7nv6cJgUKTANBRlse" target="_blank"><strong>Outside Counsel Billing Guidelines</strong></a><br><span style="font-size:12px; color:#6B7280;">Your bible for eBilling. The rules you enforce in Brightflag.</span></li>
+            <li><a href="https://drive.google.com/file/d/1R6MM-dw9fJ2finzpMqs9WGLyj4ApsKLB/view?usp=sharing" target="_blank"><strong>Signature Policy w/ Matrix</strong></a><br><span style="font-size:12px; color:#6B7280;">Guides "Internal Approval". Used to map automated routing rules.</span></li>
+            <li><a href="https://drive.google.com/file/d/18ZA3eNdhW6160cwdM9txThod_9qNYInk/view?usp=sharing" target="_blank"><strong>Formalized Payment Approvals Policy</strong></a><br><span style="font-size:12px; color:#6B7280;">Governs the financial handoff from Legal to Finance.</span></li>
+            <li><a href="https://drive.google.com/file/d/1VrGEP1LV5nL54bWPjw8f8QVkZxuSwk69/view?usp=sharing" target="_blank"><strong>Travel & Expense Policy</strong></a><br><span style="font-size:12px; color:#6B7280;">Used alongside billing guidelines to audit outside counsel travel charges.</span></li>
+            <li><a href="https://drive.google.com/file/d/1CAfJi1tvUAMWZkRyFzfIacC8VbIRV3_2/view?usp=sharing" target="_blank"><strong>Anti-Corruption Policy</strong></a><br><span style="font-size:12px; color:#6B7280;">Essential for vendor onboarding/due diligence.</span></li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h3 style="margin-top:0; color: #1E40AF;">Key Reference Links</h3>
+        <ul style="font-size:14px;">
+            <li><a href="https://drive.google.com/a/ipxpower.com/open?id=1Mma1A2xPLHO_iHT3SRhKO1XHJbiU4Ixcl8wZTkz-3bM" target="_blank"><strong>IPX Legal Onboarding (2026) Deck</strong></a></li>
+            <li><a href="https://ux-ctadmin.ctadvantage.com/CTAdminUX/CTWebAdmin/Public/Login.aspx" target="_blank"><strong>hCue Portal:</strong></a> Log in via SSO. Used by corporate paralegals for entity maintenance.</li>
+            <li><a href="https://drive.google.com/file/d/1-XRNadzDZp95Wfb2tAXIsBQrmJAPoG6k/view?usp=sharing" target="_blank">Employee Handbook v 6.0</a></li>
+        </ul>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 3rem;">Your Role in the 2026 Team OKRs</h2>
+  <div class="callout co-green">
+    Your work as a Systems Owner is the engine that drives the team's strategic success. Here’s how your daily responsibilities connect to the team's high-level objectives.
+  </div>
+
+  <div class="grid-3">
+    <div class="card" style="border-top: 4px solid var(--c-ebilling);">
+        <h3 style="margin-top:0; font-size:16px;">Automate Spend Reporting</h3>
+        <p style="font-size:13px;"><strong>Goal Owner:</strong> Laurell</p>
+        <p style="font-size:13px; color:#4B5563;"><strong>Your Impact:</strong> You ensure data feeding into the new PowerBI dashboard is clean by enforcing strict Project Codes and auditing LEDES invoices in Brightflag.</p>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--c-automation);">
+        <h3 style="margin-top:0; font-size:16px;">Improve Data Consistency</h3>
+        <p style="font-size:13px;"><strong>Goal Owner:</strong> Janelle</p>
+        <p style="font-size:13px; color:#4B5563;"><strong>Your Impact:</strong> You build the infrastructure. By building automated Checkbox intake forms and Evisort routing, you eliminate rogue documents and guarantee consistency.</p>
+    </div>
+    <div class="card" style="border-top: 4px solid var(--c-project);">
+        <h3 style="margin-top:0; font-size:16px;">Legal Team Engagement</h3>
+        <p style="font-size:13px;"><strong>Goal Owner:</strong> Miriam</p>
+        <p style="font-size:13px; color:#4B5563;"><strong>Your Impact:</strong> By automating operational bottlenecks, you give attorneys and paralegals the time/bandwidth to actually engage in team-building retreats and events.</p>
+    </div>
+  </div>
+`
+
+};
+
+// Navigation Logic
+const nav = document.getElementById('nav');
+const content = document.getElementById('content');
+
+tabs.forEach(t => {
+  const btn = document.createElement('button');
+  btn.textContent = t.label;
+  btn.onclick = () => show(t.id);
+  if(t.id === 'mandate') btn.classList.add('active');
+  nav.appendChild(btn);
+});
+
+function show(id) {
+  nav.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', tabs[i].id === id));
+  content.innerHTML = '<div class="sec active">' + (sections[id] || 'Content not found.') + '</div>';
+}
+
+// Simulator Logic: Brightflag
+function runBrightflagSim() {
+    const projCode = document.getElementById('bf-proj-code').value;
+    const rateAction = document.getElementById('bf-rate').value;
+    const status = document.getElementById('bf-status');
+    const feedback = document.getElementById('bf-feedback');
+    
+    feedback.style.display = "block";
+    
+    if (!projCode || !rateAction) {
+        feedback.textContent = "Error: You must assign a Project Code and select a Rate Action.";
+        feedback.style.background = "#FEF2F2";
+        feedback.style.color = "#991B1B";
+        feedback.style.border = "1px solid #FECACA";
+        return;
+    }
+    
+    if (rateAction === "approve") {
+        status.textContent = "Status: REJECTED (Audit Failed)";
+        status.className = "sim-status sim-status-escalated";
+        feedback.textContent = "FAIL: You accepted a rate violating the IPX Cap. Redline the EL first!";
+        feedback.style.background = "#FEF2F2";
+        feedback.style.color = "#991B1B";
+        feedback.style.border = "1px solid #FECACA";
+    } else if (rateAction === "redline") {
+        status.textContent = "Status: Approved & Locked";
+        status.className = "sim-status sim-status-approved";
+        feedback.textContent = `SUCCESS: Matter created with code ${projCode}. Rates safely capped at $750/hr.`;
+        feedback.style.background = "#ECFDF5";
+        feedback.style.color = "#065F46";
+        feedback.style.border = "1px solid #A7F3D0";
+    }
+}
+
+function resetBrightflagSim() {
+    document.getElementById('bf-status').textContent = 'Pending Ops Setup';
+    document.getElementById('bf-status').className = 'sim-status sim-status-pending';
+    document.getElementById('bf-proj-code').value = '';
+    document.getElementById('bf-rate').value = '';
+    document.getElementById('bf-feedback').style.display = 'none';
+}
+
+// Simulator Logic: Checkbox
+function runCheckboxSim() {
+    const paperType = document.getElementById('cb-template').value;
+    const redlineStatus = document.getElementById('cb-redline').value;
+    const status = document.getElementById('cb-status');
+    const feedback = document.getElementById('cb-feedback');
+    
+    feedback.style.display = "block";
+    
+    if (paperType === "cp" || redlineStatus === "outside") {
+        status.textContent = "OPTION 2: ESCALATE TO ATTORNEY";
+        status.className = "sim-status sim-status-escalated";
+        feedback.textContent = "ESCALATION TRIGGERED: The request uses non-standard terms or CP paper. The workflow automatically routes this to the GC's queue.";
+        feedback.style.background = "#FEF2F2";
+        feedback.style.color = "#991B1B";
+        feedback.style.border = "1px solid #FECACA";
+    } else {
+        status.textContent = "OPTION 1: FAST-TRACK TO PARALEGAL";
+        status.className = "sim-status sim-status-approved";
+        feedback.textContent = "STANDARD ROUTING: The request is clean. The workflow auto-generates the NDA and routes to paralegals for DocuSign.";
+        feedback.style.background = "#ECFDF5";
+        feedback.style.color = "#065F46";
+        feedback.style.border = "1px solid #A7F3D0";
+    }
+}
+
+function resetCheckboxSim() {
+    document.getElementById('cb-status').textContent = 'Awaiting Submission';
+    document.getElementById('cb-status').className = 'sim-status';
+    document.getElementById('cb-status').style.background = '#E5E7EB';
+    document.getElementById('cb-status').style.color = '#374151';
+    document.getElementById('cb-template').value = 'ipx';
+    document.getElementById('cb-redline').value = 'none';
+    document.getElementById('cb-feedback').style.display = 'none';
+}
+
+// Initial Load
+show('mandate');
+</script>
+</body>
+</html>
