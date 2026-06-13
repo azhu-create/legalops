@@ -5,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Angel Zhu | Legal Operations Portfolio</title>
 <style>
+    :root {
+        --ipx-blue: #3B82F6;
+        --ipx-dark-text: #111827;
+        --ipx-light-text: #4B5563;
+        --ipx-background: #F9FAFB;
+        --ipx-border: #E5E7EB;
+    }
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background-color: #f7f8fa;
-        color: #333;
+        font-family: "Times New Roman", Times, serif;
+        background-color: var(--ipx-background);
+        color: var(--ipx-light-text);
         margin: 0;
         padding: 0;
     }
@@ -22,65 +29,91 @@
         margin-bottom: 5rem;
     }
     .header h1 {
-        font-size: 2.8rem;
-        font-weight: 800;
-        color: #111827;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.03em;
+        font-size: 3rem;
+        font-weight: 700; /* Bolder for Times */
+        color: var(--ipx-dark-text);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
     }
     .header p {
-        font-size: 1.15rem;
-        color: #6B7280;
-        max-width: 600px;
+        font-size: 1.2rem;
+        color: var(--ipx-light-text);
+        max-width: 650px;
         margin: 0 auto;
-        line-height: 1.6;
+        line-height: 1.7;
     }
     .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
     .project-card {
         background: #fff;
-        border: 1px solid #E5E7EB;
+        border: 1px solid var(--ipx-border);
         border-radius: 16px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         padding: 2.5rem;
         display: flex;
         flex-direction: column;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
     .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.07);
+    }
+    .project-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--ipx-blue);
+        color: white;
+        margin-bottom: 1.5rem;
     }
     .project-card h3 {
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin: 0 0 1rem 0;
-        color: #111827;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin: 0 0 0.75rem 0;
+        color: var(--ipx-dark-text);
     }
     .project-card p {
-        font-size: 1rem;
+        font-size: 1.05rem;
         line-height: 1.6;
-        color: #4B5563;
         flex-grow: 1;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
     .project-card .button {
         display: inline-block;
-        background-color: #3B82F6; /* IPX Blue */
+        background-color: var(--ipx-blue);
         color: #fff;
         padding: 14px 28px;
         border-radius: 8px;
         text-decoration: none;
-        font-weight: 700;
+        font-weight: 600; /* Slightly less bold for Times */
         text-align: center;
         transition: background-color 0.2s;
-        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Keep button font modern */
     }
     .project-card .button:hover {
         background-color: #2563EB;
+    }
+    footer {
+        text-align: center;
+        margin-top: 6rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--ipx-border);
+        color: #9CA3AF;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+        .header h1 { font-size: 2.2rem; }
+        .header p { font-size: 1.1rem; }
     }
 </style>
 </head>
@@ -88,26 +121,35 @@
 
 <div class="container">
     <div class="header">
-        <h1>My Operations & Systems Portfolio</h1>
-        <p>A collection of interactive legal tech playbooks, system automation models, and spend tracking dashboards designed to streamline legal environments.</p>
+        <h1>Angel Zhu's Portfolio</h1>
+        <p>A curated collection of operational playbooks and system automation designs, created with AI-assistance to build scalable, data-driven legal environments.</p>
     </div>
 
     <div class="project-grid">
         <!-- Flagship Project: Playbook -->
         <div class="project-card">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M2 17s3-3 5-3 5 3 5 3"/><path d="M18 17v-4h-4v-2h4V7h2v4h4v2h-4v4z"/></svg>
+            </div>
             <h3>Ultimate Legal Ops Onboarding Playbook</h3>
-            <p>An interactive operations guide for IPX Power. Built for a visual, hands-on onboarding experience, this dashboard simulates Brightflag Matter Setup, models Checkbox Option 2 escalations, and maps out critical project milestones (LNTP to COD) and energy market structures.</p>
-            <a href="playbook.html" class="button">Launch Playbook</a>
+            <p>An interactive operations guide for IPX Power. Built for a visual, hands-on onboarding experience, this dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
+            <a href="playbook.html" class="button">Launch Interactive Playbook</a>
         </div>
 
         <!-- Future Project Placement -->
-        <div class="project-card" style="background: #f9fafb; border-style: dashed; border-color: #D1D5DB;">
-            <h3 style="color: #9CA3AF;">Future Operations Initiative</h3>
-            <p style="color: #9CA3AF;">This section is structured and ready for upcoming automation guides, data schemas, or PowerBI financial dashboard integrations.</p>
-            <a href="#" class="button" style="background: #E5E7EB; color:#9CA3AF; pointer-events: none; box-shadow: none;">Coming Soon</a>
+        <div class="project-card" style="background: var(--ipx-background); justify-content: center; align-items: center; text-align: center;">
+            <div class="icon" style="background: #E5E7EB;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+            </div>
+            <h3 style="color: #9CA3AF;">Future Initiative</h3>
+            <p style="color: #9CA3AF;">This space is ready for the next automation guide or data dashboard project.</p>
         </div>
     </div>
 </div>
+
+<footer>
+    &copy; 2026 Angel Zhu
+</footer>
 
 </body>
 </html>
