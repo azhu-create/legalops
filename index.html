@@ -4,100 +4,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Angel Zhu | Legal Operations Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" rel="stylesheet">
 <style>
     :root {
-        --theme-green-dark: #065F46;
+        --theme-green-dark: #064E3B;
         --theme-green-primary: #10B981;
-        --theme-dark-text: #111827;
-        --theme-light-text: #374151;
-        --theme-background: #FFFFFF;
-        --theme-subtle-bg: #F9FAFB;
+        --theme-dark-text: #1F2937;
+        --theme-light-text: #4B5563;
+        --theme-background: #F9FAFB;
         --theme-border: #E5E7EB;
-        --leaf-color: rgba(16, 185, 129, 0.08);
+        --leaf-color: rgba(16, 185, 129, 0.07);
     }
     body {
-        font-family: "Times New Roman", Times, serif;
-        background-color: var(--theme-subtle-bg);
+        background-color: var(--theme-background);
         color: var(--theme-light-text);
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        font-family: "Times New Roman", Times, serif;
     }
-
-    /* Animated Background */
-    .bg-leaves-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 0;
+    h1, h2, h3, .button {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    /* Hero & Glow */
+    .hero {
+        background-color: var(--theme-green-dark);
+        padding: 8rem 2rem;
+        text-align: center;
+        position: relative;
         overflow: hidden;
     }
-    .leaf {
+    .mouse-glow {
         position: absolute;
-        display: block;
-        list-style: none;
-        width: 20px;
-        height: 20px;
-        background: var(--leaf-color);
-        bottom: -150px;
-        animation: floatUp 25s linear infinite;
-        border-radius: 20% 80%;
-    }
-    .leaf:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
-    .leaf:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
-    .leaf:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
-    .leaf:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
-    .leaf:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
-    .leaf:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background: rgba(16, 185, 129, 0.05); }
-    .leaf:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; background: rgba(16, 185, 129, 0.06); }
-    .leaf:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-    .leaf:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
-    .leaf:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 20s; background: rgba(16, 185, 129, 0.07); }
-
-    @keyframes floatUp {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 20% 80%; }
-        100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; border-radius: 50%; }
-    }
-
-    .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 5rem 2rem;
-        position: relative;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.1s ease-out;
         z-index: 1;
     }
-    .header {
-        text-align: center;
-        margin-bottom: 5rem;
+    .hero-content {
+        position: relative;
+        z-index: 2;
     }
-    .header h1 {
-        font-size: 3.2rem;
-        font-weight: 700;
-        color: var(--theme-dark-text);
+    .hero h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        color: #FFFFFF;
         margin-bottom: 1rem;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.05em;
+        line-height: 1.1;
     }
-    .header p {
+    .hero p {
         font-size: 1.25rem;
-        color: var(--theme-light-text);
+        color: rgba(255, 255, 255, 0.8);
         max-width: 650px;
         margin: 0 auto;
         line-height: 1.7;
+    }
+    
+    /* Layout */
+    .content-area {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 5rem 2rem;
     }
     .project-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2.5rem;
     }
+    
+    /* Cards */
     .project-card {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid #fff;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.07);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
         padding: 2.5rem;
         display: flex;
         flex-direction: column;
@@ -105,19 +94,20 @@
     }
     .project-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     }
-    .project-card .icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--theme-green-primary), var(--theme-green-dark));
-        color: white;
+    .card-tag {
+        display: inline-block;
+        background: var(--theme-green-dark);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
         margin-bottom: 1.5rem;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        align-self: flex-start;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
     .project-card h3 {
         font-size: 1.7rem;
@@ -131,7 +121,9 @@
         flex-grow: 1;
         margin-bottom: 2rem;
     }
-    .project-card .button {
+    
+    /* Buttons */
+    .button {
         display: inline-block;
         background: linear-gradient(135deg, var(--theme-green-primary), var(--theme-green-dark));
         color: #fff;
@@ -142,68 +134,107 @@
         text-align: center;
         transition: transform 0.2s, box-shadow 0.2s;
         box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
-    .project-card .button:hover {
+    .button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 7px 20px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
     }
+
+    /* Contact Section */
+    .contact-section {
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        padding: 4rem;
+        margin-top: 6rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+    .contact-section h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--theme-dark-text);
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    .contact-section p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        color: var(--theme-light-text);
+    }
+    .contact-email {
+        font-size: 1.25rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        color: var(--theme-green-dark);
+        display: block;
+        margin-bottom: 2rem;
+    }
+
     footer {
         text-align: center;
-        margin-top: 6rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--theme-border);
+        padding: 4rem 2rem;
         color: #9CA3AF;
         font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-        .project-grid {
-            grid-template-columns: 1fr;
-        }
-        .header h1 { font-size: 2.5rem; }
-        .header p { font-size: 1.1rem; }
+        .project-grid { grid-template-columns: 1fr; }
+        .hero h1 { font-size: 2.8rem; }
+        .hero p { font-size: 1.1rem; }
+        .contact-section { padding: 2rem; }
     }
 </style>
 </head>
 <body>
 
-<div class="bg-leaves-container">
-    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
-    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
-</div>
-
-<div class="container">
-    <div class="header">
+<div class="hero">
+    <div class="mouse-glow"></div>
+    <div class="hero-content">
         <h1>Angel Zhu's Portfolio</h1>
         <p>A curated collection of operational playbooks and system automation designs, created with AI-assistance to build scalable, data-driven legal environments.</p>
     </div>
+</div>
 
+<div class="content-area">
     <div class="project-grid">
-        <!-- Flagship Project: Playbook -->
         <div class="project-card">
-            <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            </div>
+            <span class="card-tag">Interactive Playbook</span>
             <h3>Ultimate Legal Ops Onboarding Playbook</h3>
-            <p>An interactive operations guide for IPX Power. This dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
-            <a href="playbook.html" class="button">Launch Interactive Playbook</a>
+            <p>A comprehensive operations guide for IPX Power. This dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
+            <a href="playbook.html" class="button">Launch Playbook</a>
         </div>
-
-        <!-- Future Project Placement -->
-        <div class="project-card" style="background: rgba(249, 250, 251, 0.7); justify-content: center; align-items: center; text-align: center; border-style: dashed; border-color: var(--theme-border);">
-            <div class="icon" style="background: #E5E7EB;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
-            </div>
+        <div class="project-card" style="background: rgba(249, 250, 251, 0.8); justify-content: center; align-items: center; text-align: center; border-style: dashed; border-color: var(--theme-border);">
             <h3 style="color: #9CA3AF;">Future Initiative</h3>
             <p style="color: #9CA3AF;">This space is ready for the next automation guide or data dashboard project.</p>
         </div>
+    </div>
+
+    <!-- Direct Contact Section -->
+    <div class="contact-section">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out directly via email for collaborations, inquiries, or to discuss legal operations strategy.</p>
+        
+        <span class="contact-email">azhu@ipxpower.com</span>
+        
+        <a href="mailto:azhu@ipxpower.com" class="button">Email Me</a>
     </div>
 </div>
 
 <footer>
     &copy; 2026 Angel Zhu
 </footer>
+
+<script>
+    // Subtle mouse glow effect in the hero section
+    document.addEventListener('mousemove', e => {
+        const glow = document.querySelector('.mouse-glow');
+        if (glow) {
+            glow.style.transform = `translate(${e.clientX - 400}px, ${e.clientY - 400}px)`;
+        }
+    });
+</script>
 
 </body>
 </html>
