@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Angel Zhu | Legal Operations Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
     :root {
         --theme-green-dark: #064E3B;
@@ -13,248 +16,126 @@
         --theme-background: #F8FAFC;
         --theme-border: #E5E7EB;
     }
-    
-    /* ENFORCE TIMES NEW ROMAN EVERYWHERE */
     * {
         font-family: "Times New Roman", Times, serif !important;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+        box-sizing: border-box; margin: 0; padding: 0;
     }
-
+    h1, h2, h3, .button, .nav a, .socials a, .card-tag {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    }
     body {
         background-color: var(--theme-background);
         color: var(--theme-light-text);
         overflow-x: hidden;
         position: relative;
     }
-
-    /* --- DYNAMIC BACKGROUND VISUALS (LEAVES & GLOWS) --- */
     .bg-visuals {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        overflow: hidden;
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden;
         background: linear-gradient(180deg, #ffffff 0%, #F0FDF4 100%);
     }
-
-    /* Soft organic background blobs to reduce blockiness */
-    .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.4;
-        animation: pulse 10s infinite alternate;
-    }
-    .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #D1FAE5; }
-    .blob-2 { bottom: -20%; right: -10%; width: 600px; height: 600px; background: #A7F3D0; animation-delay: 2s;}
-
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 0.3; }
-        100% { transform: scale(1.1); opacity: 0.6; }
-    }
-
-    /* Floating Leaves */
     .leaf {
-        position: absolute;
-        display: block;
-        /* Creating an organic leaf shape using border-radius */
-        border-radius: 0 50% 50% 50%;
+        position: absolute; display: block; border-radius: 0 50% 50% 50%;
         background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 78, 59, 0.1));
-        bottom: -150px;
-        animation: floatUp linear infinite;
+        bottom: -150px; animation: floatUp linear infinite;
     }
-    
-    .leaf:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 15s; animation-delay: 0s; }
+    .leaf:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 15s; }
     .leaf:nth-child(2) { left: 25%; width: 60px; height: 60px; animation-duration: 25s; animation-delay: 2s; }
     .leaf:nth-child(3) { left: 40%; width: 30px; height: 30px; animation-duration: 18s; animation-delay: 5s; }
-    .leaf:nth-child(4) { left: 60%; width: 50px; height: 50px; animation-duration: 22s; animation-delay: 0s; }
+    .leaf:nth-child(4) { left: 60%; width: 50px; height: 50px; animation-duration: 22s; }
     .leaf:nth-child(5) { left: 75%; width: 35px; height: 35px; animation-duration: 16s; animation-delay: 4s; }
     .leaf:nth-child(6) { left: 90%; width: 70px; height: 70px; animation-duration: 28s; animation-delay: 1s; }
-
     @keyframes floatUp {
-        0% { transform: translateY(0) rotate(45deg); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
+        0% { transform: translateY(0) rotate(45deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; }
         100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
     }
-
-    /* --- CONTENT STYLING --- */
     .hero {
-        padding: 8rem 2rem 5rem 2rem;
-        text-align: center;
-        position: relative;
-        z-index: 1;
+        padding: 6rem 2rem; text-align: center; position: relative; z-index: 1;
     }
+    .main-nav {
+        display: flex; justify-content: center; align-items: center; gap: 1rem;
+        width: fit-content; margin: 0 auto 2.5rem auto; padding: 8px;
+        background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.8); border-radius: 50px;
+    }
+    .main-nav a {
+        padding: 8px 16px; border-radius: 30px; text-decoration: none; color: var(--theme-light-text);
+        font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;
+    }
+    .main-nav a:hover { background: rgba(255,255,255,0.8); color: var(--theme-dark-text); }
     .hero h1 {
-        font-size: 4rem;
-        font-weight: bold;
-        color: var(--theme-green-dark);
-        margin-bottom: 1rem;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+        font-size: 4rem; font-weight: 800; color: var(--theme-green-dark); margin-bottom: 1rem; letter-spacing: -0.04em;
     }
     .hero p {
-        font-size: 1.3rem;
-        color: var(--theme-light-text);
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.6;
-        font-style: italic; /* Adding a nice classic touch to the subtitle */
+        font-size: 1.3rem; color: var(--theme-light-text); max-width: 700px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-style: italic;
     }
-    
-    .content-area {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 2rem 2rem 5rem 2rem;
-        position: relative;
-        z-index: 1;
+    .socials { display: flex; justify-content: center; gap: 1.5rem; }
+    .socials a {
+        color: var(--theme-light-text); transition: color 0.3s ease; display: inline-block;
     }
-    
-    .project-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-    }
-    
-    /* Soft Glassmorphism Cards */
+    .socials a:hover { color: var(--theme-green-primary); }
+    .socials svg { width: 24px; height: 24px; }
+
+    .content-area { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem 2rem; position: relative; z-index: 1; }
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
     .project-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 30px; /* High border radius to eliminate blockiness */
-        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05);
-        padding: 3rem;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 30px; box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05); padding: 3rem;
+        display: flex; flex-direction: column; transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-    .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(6, 78, 59, 0.1);
-    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(6, 78, 59, 0.1); }
     .card-tag {
-        display: inline-block;
-        background: var(--theme-green-dark);
-        color: #fff;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-        align-self: flex-start;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        display: inline-block; background: var(--theme-green-dark); color: #fff; padding: 6px 14px;
+        border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 1.5rem;
+        align-self: flex-start; text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .project-card h3 {
-        font-size: 2rem;
-        font-weight: bold;
-        margin: 0 0 1rem 0;
-        color: var(--theme-green-dark);
-    }
-    .project-card p {
-        font-size: 1.15rem;
-        line-height: 1.6;
-        flex-grow: 1;
-        margin-bottom: 2rem;
-        color: var(--theme-dark-text);
-    }
-    
+    .project-card h3 { font-size: 2rem; font-weight: bold; margin: 0 0 1rem 0; color: var(--theme-green-dark); }
+    .project-card p { font-size: 1.15rem; line-height: 1.6; flex-grow: 1; margin-bottom: 2rem; color: var(--theme-dark-text); }
     .button {
-        display: inline-block;
-        background: var(--theme-green-dark);
-        color: #fff;
-        padding: 16px 32px;
-        border-radius: 50px; /* Pill-shaped button for organic feel */
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.1rem;
-        text-align: center;
-        transition: all 0.3s ease;
-        border: 2px solid var(--theme-green-dark);
+        display: inline-block; background: var(--theme-green-dark); color: #fff; padding: 16px 32px;
+        border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem;
+        text-align: center; transition: all 0.3s ease; border: 2px solid var(--theme-green-dark);
     }
-    .button:hover {
-        background: transparent;
-        color: var(--theme-green-dark);
-    }
-
-    /* Contact Section */
+    .button:hover { background: transparent; color: var(--theme-green-dark); }
     .contact-section {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        border-radius: 30px;
-        padding: 4rem;
-        margin-top: 5rem;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05);
-        text-align: center;
+        background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-radius: 30px;
+        padding: 4rem; margin-top: 5rem; border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05); text-align: center;
     }
-    .contact-section h2 {
-        font-size: 2.5rem;
-        color: var(--theme-green-dark);
-        margin-top: 0;
-        margin-bottom: 1rem;
-    }
-    .contact-section p {
-        font-size: 1.2rem;
-        margin-bottom: 2rem;
-        color: var(--theme-dark-text);
-    }
-    .contact-email {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--theme-green-primary);
-        display: block;
-        margin-bottom: 2rem;
-    }
-
-    footer {
-        text-align: center;
-        padding: 3rem 2rem;
-        color: var(--theme-light-text);
-        font-size: 1rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    @media (max-width: 768px) {
-        .project-grid { grid-template-columns: 1fr; }
-        .hero h1 { font-size: 3rem; }
-        .hero p { font-size: 1.1rem; }
-        .contact-section { padding: 2.5rem; }
-    }
+    .contact-section h2 { font-size: 2.5rem; color: var(--theme-green-dark); margin-top: 0; margin-bottom: 1rem; }
+    .contact-section p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--theme-dark-text); }
+    .contact-email { font-size: 1.5rem; font-weight: bold; color: var(--theme-green-primary); display: block; margin-bottom: 2rem; }
+    footer { text-align: center; padding: 3rem 2rem; color: var(--theme-light-text); font-size: 1rem; position: relative; z-index: 1; }
+    @media (max-width: 768px) { .project-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } .contact-section { padding: 2.5rem; } }
 </style>
 </head>
 <body>
-
-<!-- Dynamic Leaf & Blob Background -->
 <div class="bg-visuals">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <!-- Leaves -->
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
-    <div class="leaf"></div>
+    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
 </div>
 
 <div class="hero">
+    <nav class="main-nav">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
     <h1>Angel Zhu's Portfolio</h1>
     <p>A curated collection of operational playbooks and system automation designs, created with AI-assistance to build scalable, data-driven legal environments.</p>
+    <div class="socials">
+        <a href="https://github.com/azhu-create" target="_blank" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+    </div>
 </div>
 
-<div class="content-area">
+<div class="content-area" id="portfolio">
     <div class="project-grid">
         <div class="project-card">
             <span class="card-tag">Interactive Playbook</span>
             <h3>Ultimate Legal Ops Onboarding Playbook</h3>
-            <p>A comprehensive operations guide for IPX Power. This dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
+            <p>An interactive operations guide for IPX Power. This dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
             <a href="playbook.html" class="button">Launch Playbook</a>
         </div>
         <div class="project-card" style="background: rgba(240, 253, 244, 0.4); justify-content: center; align-items: center; text-align: center; border: 2px dashed rgba(16, 185, 129, 0.3);">
@@ -263,20 +144,36 @@
         </div>
     </div>
 
-    <!-- Direct Contact Section -->
-    <div class="contact-section">
+    <div class="contact-section" id="contact">
         <h2>Get In Touch</h2>
         <p>Feel free to reach out directly via email for collaborations, inquiries, or to discuss legal operations strategy.</p>
-        
-        <span class="contact-email">azhu@ipxpower.com</span>
-        
-        <a href="mailto:azhu@ipxpower.com" class="button">Email Me</a>
+        <a href="mailto:azhu@ipxpower.com" class="button" id="email-button" onclick="copyEmail(event)">Email Me</a>
     </div>
 </div>
 
 <footer>
     &copy; 2026 Angel Zhu
 </footer>
+
+<script>
+    function copyEmail(event) {
+        event.preventDefault(); // Prevent the mailto link from firing immediately
+        const email = 'azhu@ipxpower.com';
+        const button = document.getElementById('email-button');
+        const originalText = button.textContent;
+
+        navigator.clipboard.writeText(email).then(() => {
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+                window.location.href = 'mailto:' + email; // Open email client after showing feedback
+            }, 1500);
+        }, () => {
+            // Fallback for older browsers
+            window.location.href = 'mailto:' + email;
+        });
+    }
+</script>
 
 </body>
 </html>
