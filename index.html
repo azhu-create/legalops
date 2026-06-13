@@ -4,197 +4,249 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Angel Zhu | Legal Operations Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" rel="stylesheet">
 <style>
     :root {
         --theme-green-dark: #064E3B;
         --theme-green-primary: #10B981;
         --theme-dark-text: #1F2937;
         --theme-light-text: #4B5563;
-        --theme-background: #F9FAFB;
+        --theme-background: #F8FAFC;
         --theme-border: #E5E7EB;
-        --leaf-color: rgba(16, 185, 129, 0.07);
     }
+    
+    /* ENFORCE TIMES NEW ROMAN EVERYWHERE */
+    * {
+        font-family: "Times New Roman", Times, serif !important;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         background-color: var(--theme-background);
         color: var(--theme-light-text);
-        margin: 0;
-        padding: 0;
         overflow-x: hidden;
-        font-family: "Times New Roman", Times, serif;
+        position: relative;
     }
-    h1, h2, h3, .button {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* --- DYNAMIC BACKGROUND VISUALS (LEAVES & GLOWS) --- */
+    .bg-visuals {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffffff 0%, #F0FDF4 100%);
+    }
+
+    /* Soft organic background blobs to reduce blockiness */
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        animation: pulse 10s infinite alternate;
+    }
+    .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #D1FAE5; }
+    .blob-2 { bottom: -20%; right: -10%; width: 600px; height: 600px; background: #A7F3D0; animation-delay: 2s;}
+
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.3; }
+        100% { transform: scale(1.1); opacity: 0.6; }
+    }
+
+    /* Floating Leaves */
+    .leaf {
+        position: absolute;
+        display: block;
+        /* Creating an organic leaf shape using border-radius */
+        border-radius: 0 50% 50% 50%;
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 78, 59, 0.1));
+        bottom: -150px;
+        animation: floatUp linear infinite;
     }
     
-    /* Hero & Glow */
+    .leaf:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 15s; animation-delay: 0s; }
+    .leaf:nth-child(2) { left: 25%; width: 60px; height: 60px; animation-duration: 25s; animation-delay: 2s; }
+    .leaf:nth-child(3) { left: 40%; width: 30px; height: 30px; animation-duration: 18s; animation-delay: 5s; }
+    .leaf:nth-child(4) { left: 60%; width: 50px; height: 50px; animation-duration: 22s; animation-delay: 0s; }
+    .leaf:nth-child(5) { left: 75%; width: 35px; height: 35px; animation-duration: 16s; animation-delay: 4s; }
+    .leaf:nth-child(6) { left: 90%; width: 70px; height: 70px; animation-duration: 28s; animation-delay: 1s; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* --- CONTENT STYLING --- */
     .hero {
-        background-color: var(--theme-green-dark);
-        padding: 8rem 2rem;
+        padding: 8rem 2rem 5rem 2rem;
         text-align: center;
         position: relative;
-        overflow: hidden;
-    }
-    .mouse-glow {
-        position: absolute;
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
-        border-radius: 50%;
-        pointer-events: none;
-        transition: transform 0.1s ease-out;
         z-index: 1;
-    }
-    .hero-content {
-        position: relative;
-        z-index: 2;
     }
     .hero h1 {
         font-size: 4rem;
-        font-weight: 800;
-        color: #FFFFFF;
+        font-weight: bold;
+        color: var(--theme-green-dark);
         margin-bottom: 1rem;
-        letter-spacing: -0.05em;
+        letter-spacing: -0.02em;
         line-height: 1.1;
     }
     .hero p {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.8);
-        max-width: 650px;
+        font-size: 1.3rem;
+        color: var(--theme-light-text);
+        max-width: 700px;
         margin: 0 auto;
-        line-height: 1.7;
+        line-height: 1.6;
+        font-style: italic; /* Adding a nice classic touch to the subtitle */
     }
     
-    /* Layout */
     .content-area {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 5rem 2rem;
+        padding: 2rem 2rem 5rem 2rem;
+        position: relative;
+        z-index: 1;
     }
+    
     .project-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
+        gap: 3rem;
     }
     
-    /* Cards */
+    /* Soft Glassmorphism Cards */
     .project-card {
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 24px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
-        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 30px; /* High border radius to eliminate blockiness */
+        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05);
+        padding: 3rem;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(6, 78, 59, 0.1);
     }
     .card-tag {
         display: inline-block;
         background: var(--theme-green-dark);
         color: #fff;
-        padding: 6px 12px;
+        padding: 6px 14px;
         border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 700;
+        font-size: 0.8rem;
+        font-weight: bold;
         margin-bottom: 1.5rem;
         align-self: flex-start;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
     .project-card h3 {
-        font-size: 1.7rem;
-        font-weight: 700;
+        font-size: 2rem;
+        font-weight: bold;
         margin: 0 0 1rem 0;
-        color: var(--theme-dark-text);
+        color: var(--theme-green-dark);
     }
     .project-card p {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         line-height: 1.6;
         flex-grow: 1;
         margin-bottom: 2rem;
+        color: var(--theme-dark-text);
     }
     
-    /* Buttons */
     .button {
         display: inline-block;
-        background: linear-gradient(135deg, var(--theme-green-primary), var(--theme-green-dark));
+        background: var(--theme-green-dark);
         color: #fff;
-        padding: 14px 28px;
-        border-radius: 8px;
+        padding: 16px 32px;
+        border-radius: 50px; /* Pill-shaped button for organic feel */
         text-decoration: none;
-        font-weight: 600;
+        font-weight: bold;
+        font-size: 1.1rem;
         text-align: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+        transition: all 0.3s ease;
+        border: 2px solid var(--theme-green-dark);
     }
     .button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
+        background: transparent;
+        color: var(--theme-green-dark);
     }
 
     /* Contact Section */
     .contact-section {
-        background-color: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border-radius: 30px;
         padding: 4rem;
-        margin-top: 6rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        margin-top: 5rem;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 10px 30px rgba(6, 78, 59, 0.05);
         text-align: center;
     }
     .contact-section h2 {
         font-size: 2.5rem;
-        font-weight: 800;
-        color: var(--theme-dark-text);
+        color: var(--theme-green-dark);
         margin-top: 0;
         margin-bottom: 1rem;
     }
     .contact-section p {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 2rem;
-        color: var(--theme-light-text);
+        color: var(--theme-dark-text);
     }
     .contact-email {
-        font-size: 1.25rem;
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        color: var(--theme-green-dark);
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--theme-green-primary);
         display: block;
         margin-bottom: 2rem;
     }
 
     footer {
         text-align: center;
-        padding: 4rem 2rem;
-        color: #9CA3AF;
-        font-size: 0.9rem;
+        padding: 3rem 2rem;
+        color: var(--theme-light-text);
+        font-size: 1rem;
+        position: relative;
+        z-index: 1;
     }
 
     @media (max-width: 768px) {
         .project-grid { grid-template-columns: 1fr; }
-        .hero h1 { font-size: 2.8rem; }
+        .hero h1 { font-size: 3rem; }
         .hero p { font-size: 1.1rem; }
-        .contact-section { padding: 2rem; }
+        .contact-section { padding: 2.5rem; }
     }
 </style>
 </head>
 <body>
 
+<!-- Dynamic Leaf & Blob Background -->
+<div class="bg-visuals">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <!-- Leaves -->
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+</div>
+
 <div class="hero">
-    <div class="mouse-glow"></div>
-    <div class="hero-content">
-        <h1>Angel Zhu's Portfolio</h1>
-        <p>A curated collection of operational playbooks and system automation designs, created with AI-assistance to build scalable, data-driven legal environments.</p>
-    </div>
+    <h1>Angel Zhu's Portfolio</h1>
+    <p>A curated collection of operational playbooks and system automation designs, created with AI-assistance to build scalable, data-driven legal environments.</p>
 </div>
 
 <div class="content-area">
@@ -205,9 +257,9 @@
             <p>A comprehensive operations guide for IPX Power. This dashboard simulates Brightflag matter setup, models Checkbox workflow escalations, and maps out the core tech stack, policies, and financial controls for the role.</p>
             <a href="playbook.html" class="button">Launch Playbook</a>
         </div>
-        <div class="project-card" style="background: rgba(249, 250, 251, 0.8); justify-content: center; align-items: center; text-align: center; border-style: dashed; border-color: var(--theme-border);">
-            <h3 style="color: #9CA3AF;">Future Initiative</h3>
-            <p style="color: #9CA3AF;">This space is ready for the next automation guide or data dashboard project.</p>
+        <div class="project-card" style="background: rgba(240, 253, 244, 0.4); justify-content: center; align-items: center; text-align: center; border: 2px dashed rgba(16, 185, 129, 0.3);">
+            <h3 style="color: rgba(6, 78, 59, 0.5);">Future Initiative</h3>
+            <p style="color: rgba(6, 78, 59, 0.5);">This space is reserved for upcoming automation guides, data schemas, or operational dashboards.</p>
         </div>
     </div>
 
@@ -225,16 +277,6 @@
 <footer>
     &copy; 2026 Angel Zhu
 </footer>
-
-<script>
-    // Subtle mouse glow effect in the hero section
-    document.addEventListener('mousemove', e => {
-        const glow = document.querySelector('.mouse-glow');
-        if (glow) {
-            glow.style.transform = `translate(${e.clientX - 400}px, ${e.clientY - 400}px)`;
-        }
-    });
-</script>
 
 </body>
 </html>
