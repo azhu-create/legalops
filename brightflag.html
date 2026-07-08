@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPX Power: Brightflag Comprehensive Operations Guide</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        h3 { color: #16a085; margin-top: 20px; }
+        .section { background: #fff; padding: 25px; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 5px solid #3498db; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+        th, td { padding: 12px; border: 1px solid #e0e0e0; text-align: left; }
+        th { background-color: #f8f9fa; color: #2c3e50; font-weight: 600; }
+        .highlight { background-color: #fef9e7; border-left: 4px solid #f1c40f; padding: 12px; margin: 15px 0; border-radius: 0 4px 4px 0; }
+        .warning { background-color: #fadbd8; border-left: 4px solid #e74c3c; padding: 12px; margin: 15px 0; border-radius: 0 4px 4px 0; }
+        code { background-color: #f1f2f6; color: #c0392b; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>IPX Power: Brightflag Operations Master SOP</h1>
+    <p>A comprehensive guide for Legal Ops covering matter intake, granular allocations, GL coding, timekeepers, and strict AP workflow policies.</p>
+
+    <div class="section">
+        <h2>1. New Matter Intake & Slack Routing</h2>
+        <p>New matters must be routed to the correct Slack channels based on the department. Use the standard intake template and keep detailed assumptions in the thread.</p>
+        <table>
+            <tr><th>Department / Topic</th><th>Destination</th><th>Examples / Key Contacts</th></tr>
+            <tr><td><strong>General Corporate Legal</strong></td><td><code>#topics-legal</code></td><td>Contracts, policy. (For attorneys only).</td></tr>
+            <tr><td><strong>Permitting & Environmental</strong></td><td><code>#topics-permitting</code></td><td>Water rights, FAA, Cox Castle.</td></tr>
+            <tr><td><strong>Financing & Transactional</strong></td><td><code>#team-legal-professionals</code></td><td>Term Loans, Bonds. (Paul Vercruyssen).</td></tr>
+            <tr><td><strong>Origination & Trading</strong></td><td>Direct DM</td><td>Energy Swaps, Hedges. (Colin Cardwell).</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Granular Allocations & GL Coding Rules</h2>
+        <p>Accurate coding at the matter level dictates how NetSuite processes the invoice.</p>
+        
+        <h3>A. Easley Project Splits & Allocations</h3>
+        <ul>
+            <li><strong>The 50/50 Standard:</strong> Commercial, hedging, and general project costs are split exactly 50/50 between <strong>IP Easley, LLC</strong> (Easley I) and <strong>IP Easley II, LLC</strong> (Easley II).</li>
+            <li><span class="warning"><strong>No-Split Exceptions:</strong> Accounting dictates that Land/Option Task Codes (<code>1.10</code>, <code>1.15</code>, <code>1.90</code>, <code>1.99</code>) are strictly kept "Full" (100% to one entity) and NEVER split.</span></li>
+        </ul>
+
+        <h3>B. Exact GL & Department Mappings</h3>
+        <table>
+            <tr><th>Matter Type</th><th>Department Code</th><th>GL Code & Task Code</th></tr>
+            <tr>
+                <td><strong>Origination & Offtake Hedges</strong><br>(e.g., BP Energy Swap)</td>
+                <td><code>114 - Origination and Trading</code></td>
+                <td><strong>Pre-COD:</strong> <code>GL 1710 - Project Assets</code><br><strong>Task:</strong> <code>-2.50 Legal - Origination & Trading</code></td>
+            </tr>
+            <tr>
+                <td><strong>Transactional Financing</strong><br>(e.g., Term Loan B, Bonds)</td>
+                <td><code>104 - Corporate Finance</code></td>
+                <td><code>GL 2601 - Upfront Financing Costs</code></td>
+            </tr>
+            <tr>
+                <td><strong>Tax / SALT Legal</strong></td>
+                <td>Corporate Finance</td>
+                <td>Must route through the <strong>Easley TE (Tax Equity) Financing</strong> matter, NOT general corporate tax.</td>
+            </tr>
+        </table>
+
+        <h3>C. Capitalization vs. Operational Expenses</h3>
+        <ul>
+            <li><strong>Pre-COD (1710 - Project Assets):</strong> Projects under development/construction (like Easley) must capitalize setup fees to the balance sheet. Do not use 5xxx operating expenses for pre-COD hedges or setups.</li>
+            <li><strong>Post-COD:</strong> Once Substantial Completion is reached, expenses transition to 5xxx series operating accounts.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. The 3-Stage Approval Workflow</h2>
+        <p>Every invoice goes through a mandatory sequential workflow (configured in <strong>Admin Settings > Workflows</strong>) to maintain Segregation of Duties (SOD).</p>
+        <table>
+            <tr><th>Stage</th><th>Role</th><th>Responsibility</th></tr>
+            <tr><td><strong>Stage 1</strong></td><td>Legal Ops (You/Janelle)</td><td>Admin compliance, unauthorized rate hikes, guidelines.</td></tr>
+            <tr><td><strong>Stage 2</strong></td><td>Matter / Business Lead</td><td>Confirming legal substance, checking scope/hours.</td></tr>
+            <tr><td><strong>Stage 3</strong></td><td>Department Head</td><td>Final financial authority/commercial sign-off.</td></tr>
+        </table>
+        
+        <h3>Workflow Exceptions & Nuances</h3>
+        <ul>
+            <li><strong>Deal Legal / Capital Markets:</strong> Requires split oversight. <strong>Osama Khan</strong> checks legal substance (Stage 2), <strong>Kelsey Barton</strong> verifies debt/budget sizing (Stage 2b/Business), and <strong>Paul Vercruyssen</strong> gives Exec Sign-off (Stage 3).</li>
+            <li><strong>The "Dual Role" Shortcut:</strong> For standard Corporate Legal matters, the assigned attorney (e.g., Andrea Nocito) often acts as both the Business Lead and Attorney Reviewer, combining Stages 2 and 3.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. Financial Policies, Tiers & Exceptions</h2>
+        <p>Brightflag enforces the CFO's Payment Approvals Policy thresholds. Exceeding a tier limit forces an escalation to the next level up.</p>
+        
+        <h3>A. Payment Approval Tiers (Delegation of Authority)</h3>
+        <ul>
+            <li><strong>Tier 5:</strong> $25k limit (Standard FTEs)</li>
+            <li><strong>Tier 4:</strong> $250k limit (Senior Leads / Ops Personnel)</li>
+            <li><strong>Tier 3:</strong> $1M limit (Senior Dept Managers)</li>
+            <li><strong>Tier 2:</strong> $5M limit (Department Heads, e.g., Colin Cardwell, Paul Vercruyssen)</li>
+            <li><strong>Tier 1:</strong> Unlimited (C-Suite, e.g., Todd Johansen - CCO)</li>
+        </ul>
+
+        <h3>B. Critical Policy Exceptions</h3>
+        <ul>
+            <li><strong>The $100k Prepaids Exception:</strong> Invoices under $100,000 do NOT need to be amortized to prepaid accounts (1400/1405). Expense them directly to the current operational month.</li>
+            <li><strong>Under $5k Auto-Approvals:</strong> Department heads can auto-approve invoices well below their tier limits without triggering escalations.</li>
+            <li><strong>Under $5k IT/Furniture Rule:</strong> Small office/remote equipment is never capitalized. Code as: Category: <code>Exp. Furn. & Fixtures Under $5k</code> | GL: <code>6xxx series</code> | Project: <code>Non-Project (A91)</code> | Task: <code>GA/Allocated Costs</code>.</li>
+            <li><strong>Professional Development:</strong> Capped at $2,000 annually for individuals, $5,000 for Executives.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5. Law Firm & Timekeeper Compliance (AI Controls)</h2>
+        <ul>
+            <li><strong>Rate Locking:</strong> You must lock in approved timekeeper rates during onboarding.</li>
+            <li><strong>Automated AI Rejections:</strong> Brightflag's AI automatically pre-screens and instantly rejects invoices containing unapproved timekeepers or rates exceeding locked thresholds before they hit Stage 1.</li>
+        </ul>
+    </div>
+
+</body>
+</html>
