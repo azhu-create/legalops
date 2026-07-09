@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPX Power: Brightflag Comprehensive Operations Guide</title>
+    <title>IPX Power: Legal Ops Master Brightflag & AP SOP</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
         h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
@@ -16,106 +16,91 @@
         .highlight { background-color: #fef9e7; border-left: 4px solid #f1c40f; padding: 12px; margin: 15px 0; border-radius: 0 4px 4px 0; }
         .warning { background-color: #fadbd8; border-left: 4px solid #e74c3c; padding: 12px; margin: 15px 0; border-radius: 0 4px 4px 0; }
         code { background-color: #f1f2f6; color: #c0392b; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+        .flow { font-weight: bold; color: #2980b9; background: #e8f4f8; padding: 10px; text-align: center; border-radius: 4px; border: 1px solid #bce8f1; }
+        .checklist { list-style-type: square; margin-left: 20px; }
     </style>
 </head>
 <body>
 
-    <h1>IPX Power: Brightflag Operations Master SOP</h1>
-    <p>A comprehensive guide for Legal Ops covering matter intake, granular allocations, GL coding, timekeepers, and strict AP workflow policies.</p>
+    <h1>IPX Power: Brightflag & Stampli Operations Master SOP</h1>
+    <p>A comprehensive guide for Legal Ops covering matter intake, allocations, Brightflag invoice review checklists, and downstream Stampli AP workflows.</p>
+
+    <div class="flow">
+        System Data Flow: [Brightflag (Invoice Review)] ➔ [Stampli (Accounting/Payment)] ➔ [PowerBI (Reporting)]
+    </div>
 
     <div class="section">
-        <h2>1. New Matter Intake & Slack Routing</h2>
-        <p>New matters must be routed to the correct Slack channels based on the department. Use the standard intake template and keep detailed assumptions in the thread.</p>
+        <h2>Phase 1: New Matter Intake & Slack Routing</h2>
+        <p>New matters must be routed to the correct Slack channels to ensure the right business leads provide allocation and scope confirmation.</p>
         <table>
             <tr><th>Department / Topic</th><th>Destination</th><th>Examples / Key Contacts</th></tr>
-            <tr><td><strong>General Corporate Legal</strong></td><td><code>#topics-legal</code></td><td>Contracts, policy. (For attorneys only).</td></tr>
-            <tr><td><strong>Permitting & Environmental</strong></td><td><code>#topics-permitting</code></td><td>Water rights, FAA, Cox Castle.</td></tr>
-            <tr><td><strong>Financing & Transactional</strong></td><td><code>#team-legal-professionals</code></td><td>Term Loans, Bonds. (Paul Vercruyssen).</td></tr>
-            <tr><td><strong>Origination & Trading</strong></td><td>Direct DM</td><td>Energy Swaps, Hedges. (Colin Cardwell).</td></tr>
+            <tr><td><strong>General Legal (Default)</strong></td><td><code>#topics-legal</code></td><td>Corporate Governance, NDAs, Origination & Trading (Energy Swaps), HR Legal.</td></tr>
+            <tr><td><strong>Deal Legal (Transactional)</strong></td><td><code>#team-legal-professionals</code></td><td>Term Loans, Bonds, Tax Equity, Corporate Credit. (Paul Vercruyssen, Osama Khan).</td></tr>
+            <tr><td><strong>Permitting & Environmental</strong></td><td><code>#topics-permitting</code></td><td>Water rights, FAA, Land Surveys.</td></tr>
         </table>
     </div>
 
     <div class="section">
-        <h2>2. Granular Allocations & GL Coding Rules</h2>
-        <p>Accurate coding at the matter level dictates how NetSuite processes the invoice.</p>
+        <h2>Phase 2: Ingestion & System Allocations</h2>
+        <h3>A. The "Matter-Level Fix" Rule for Stampli Syncs</h3>
+        <p class="warning"><strong>CRITICAL:</strong> If an invoice is submitted with the wrong GL code or allocation, you <strong>MUST</strong> fix the allocation at the <em>Matter Level</em> in Brightflag. If you only fix it on the individual invoice, the downstream API sync to Stampli will break on every subsequent invoice submitted to that matter.</p>
+
+        <h3>B. Understanding Allocation Parameters</h3>
+        <ul>
+            <li><strong>Entity & Project ID:</strong> If a cost benefits two project phases (e.g., Easley I and II), split it 50/50. <em>Exception: Land/Option Task Codes (1.10, 1.15, 1.90) are strictly kept 100% to one entity.</em></li>
+            <li><strong>GL Code:</strong> Projects pre-COD are capitalized to <code>1710 - Project Assets</code>. Transactional Deals use <code>2601 - Upfront Financing Costs</code>.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Phase 3: The 3-Stage Approval Workflow & Review Checklist</h2>
+        <p>Every invoice goes through a mandatory sequential workflow to maintain Segregation of Duties (SOD).</p>
         
-        <h3>A. Easley Project Splits & Allocations</h3>
-        <ul>
-            <li><strong>The 50/50 Standard:</strong> Commercial, hedging, and general project costs are split exactly 50/50 between <strong>IP Easley, LLC</strong> (Easley I) and <strong>IP Easley II, LLC</strong> (Easley II).</li>
-            <li><span class="warning"><strong>No-Split Exceptions:</strong> Accounting dictates that Land/Option Task Codes (<code>1.10</code>, <code>1.15</code>, <code>1.90</code>, <code>1.99</code>) are strictly kept "Full" (100% to one entity) and NEVER split.</span></li>
-        </ul>
-
-        <h3>B. Exact GL & Department Mappings</h3>
-        <table>
-            <tr><th>Matter Type</th><th>Department Code</th><th>GL Code & Task Code</th></tr>
-            <tr>
-                <td><strong>Origination & Offtake Hedges</strong><br>(e.g., BP Energy Swap)</td>
-                <td><code>114 - Origination and Trading</code></td>
-                <td><strong>Pre-COD:</strong> <code>GL 1710 - Project Assets</code><br><strong>Task:</strong> <code>-2.50 Legal - Origination & Trading</code></td>
-            </tr>
-            <tr>
-                <td><strong>Transactional Financing</strong><br>(e.g., Term Loan B, Bonds)</td>
-                <td><code>104 - Corporate Finance</code></td>
-                <td><code>GL 2601 - Upfront Financing Costs</code></td>
-            </tr>
-            <tr>
-                <td><strong>Tax / SALT Legal</strong></td>
-                <td>Corporate Finance</td>
-                <td>Must route through the <strong>Easley TE (Tax Equity) Financing</strong> matter, NOT general corporate tax.</td>
-            </tr>
-        </table>
-
-        <h3>C. Capitalization vs. Operational Expenses</h3>
-        <ul>
-            <li><strong>Pre-COD (1710 - Project Assets):</strong> Projects under development/construction (like Easley) must capitalize setup fees to the balance sheet. Do not use 5xxx operating expenses for pre-COD hedges or setups.</li>
-            <li><strong>Post-COD:</strong> Once Substantial Completion is reached, expenses transition to 5xxx series operating accounts.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>3. The 3-Stage Approval Workflow</h2>
-        <p>Every invoice goes through a mandatory sequential workflow (configured in <strong>Admin Settings > Workflows</strong>) to maintain Segregation of Duties (SOD).</p>
+        <h3>A. The Standard Roles</h3>
         <table>
             <tr><th>Stage</th><th>Role</th><th>Responsibility</th></tr>
-            <tr><td><strong>Stage 1</strong></td><td>Legal Ops (You/Janelle)</td><td>Admin compliance, unauthorized rate hikes, guidelines.</td></tr>
+            <tr><td><strong>Stage 1</strong></td><td>Legal Ops</td><td>Admin compliance, unauthorized rate hikes, block billing.</td></tr>
             <tr><td><strong>Stage 2</strong></td><td>Matter / Business Lead</td><td>Confirming legal substance, checking scope/hours.</td></tr>
-            <tr><td><strong>Stage 3</strong></td><td>Department Head</td><td>Final financial authority/commercial sign-off.</td></tr>
+            <tr><td><strong>Stage 3</strong></td><td>Department Head</td><td>Final financial authority based on AP Payment Tiers.</td></tr>
         </table>
-        
-        <h3>Workflow Exceptions & Nuances</h3>
-        <ul>
-            <li><strong>Deal Legal / Capital Markets:</strong> Requires split oversight. <strong>Osama Khan</strong> checks legal substance (Stage 2), <strong>Kelsey Barton</strong> verifies debt/budget sizing (Stage 2b/Business), and <strong>Paul Vercruyssen</strong> gives Exec Sign-off (Stage 3).</li>
-            <li><strong>The "Dual Role" Shortcut:</strong> For standard Corporate Legal matters, the assigned attorney (e.g., Andrea Nocito) often acts as both the Business Lead and Attorney Reviewer, combining Stages 2 and 3.</li>
+
+        <h3>B. The Brightflag Review Checklist (For Matter Leads & Attorneys)</h3>
+        <p>When routing invoices for Stage 2/3 approvals, ensure reviewers are checking against the official Legal checklist:</p>
+        <ul class="checklist">
+            <li><strong>Work Verification:</strong> Verifying work completed is what was actually ordered.</li>
+            <li><strong>In-House Capability:</strong> Taking note of line items that could be performed in-house for future engagements.</li>
+            <li><strong>Excessive Time:</strong> Reviewing for excessive time allocations based on the description.</li>
+            <li><strong>Staffing Levels:</strong> Reviewing the matter is staffed with the appropriate number and level of personnel.</li>
+            <li><strong>No "Learning Time":</strong> Confirming no time entries for "learning time" required to bring a new attorney or legal assistant up to speed.</li>
+            <li><strong>Correct Matter:</strong> Confirming the invoice was submitted to the correct Brightflag matter.</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>4. Financial Policies, Tiers & Exceptions</h2>
-        <p>Brightflag enforces the CFO's Payment Approvals Policy thresholds. Exceeding a tier limit forces an escalation to the next level up.</p>
-        
-        <h3>A. Payment Approval Tiers (Delegation of Authority)</h3>
+        <h2>Phase 4: Stampli Workflow & AP Processing</h2>
+        <p>Once an invoice is fully approved in Brightflag, it is pushed via API to Stampli for final Accounts Payable processing. Legal Ops must understand how Stampli handles these imports to troubleshoot payment delays.</p>
+
+        <h3>A. Stampli Approver Capabilities</h3>
         <ul>
-            <li><strong>Tier 5:</strong> $25k limit (Standard FTEs)</li>
-            <li><strong>Tier 4:</strong> $250k limit (Senior Leads / Ops Personnel)</li>
-            <li><strong>Tier 3:</strong> $1M limit (Senior Dept Managers)</li>
-            <li><strong>Tier 2:</strong> $5M limit (Department Heads, e.g., Colin Cardwell, Paul Vercruyssen)</li>
-            <li><strong>Tier 1:</strong> Unlimited (C-Suite, e.g., Todd Johansen - CCO)</li>
+            <li><strong>Direct Coding Edits (New Policy):</strong> Instead of rejecting an invoice due to bad coding, Stampli approvers can now directly edit coding fields (GL Account, Location, Task Code, Project, Department) on the fly.</li>
+            <li><strong>Ask a Question:</strong> If an approver is unsure about a charge, they should use the "Ask a Question" feature in Stampli rather than rejecting the invoice, which restarts the entire lifecycle.</li>
         </ul>
 
-        <h3>B. Critical Policy Exceptions</h3>
+        <h3>B. Why a Stampli Invoice Would Be Rejected (Not Approved)</h3>
+        <p>Invoices exported from Brightflag to Stampli are often delayed or rejected by AP/Approvers for the following reasons:</p>
+        <ul class="checklist">
+            <li><strong>Incorrect Amount (Billed Total vs. Approved Fees):</strong> Brightflag users sometimes push the "Approved Fees" or "Billed Fees" to Stampli. Stampli requires the absolute <strong>Billed Total</strong> amount.</li>
+            <li><strong>OCR Mismatches (Wrong Vendor or Invoice #):</strong> Stampli's Optical Character Recognition (OCR) sometimes misreads the vendor name or invoice number on the PDF. If the data pushed from Brightflag doesn't match the OCR read, AP will kick it back.</li>
+            <li><span class="warning"><strong>The Wrong Rejection Reason (Critical Trap):</strong> If an invoice *must* be rejected for coding, the approver must select <strong>"Incorrect Coding (send back to the coder)"</strong>. Selecting any other rejection reason permanently sends the invoice to the Stampli Trash/Rejected queue where AP coders have no access to it, forcing the firm to resubmit entirely.</span></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Phase 5: Financial Policies, Tiers & Exceptions</h2>
         <ul>
+            <li><strong>Delegation of Authority Tiers:</strong> Tier 5 ($25k limit), Tier 4 ($250k limit), Tier 3 ($1M limit), Tier 2 ($5M limit - Dept Heads), Tier 1 (Unlimited - C-Suite).</li>
             <li><strong>The $100k Prepaids Exception:</strong> Invoices under $100,000 do NOT need to be amortized to prepaid accounts (1400/1405). Expense them directly to the current operational month.</li>
             <li><strong>Under $5k Auto-Approvals:</strong> Department heads can auto-approve invoices well below their tier limits without triggering escalations.</li>
-            <li><strong>Under $5k IT/Furniture Rule:</strong> Small office/remote equipment is never capitalized. Code as: Category: <code>Exp. Furn. & Fixtures Under $5k</code> | GL: <code>6xxx series</code> | Project: <code>Non-Project (A91)</code> | Task: <code>GA/Allocated Costs</code>.</li>
-            <li><strong>Professional Development:</strong> Capped at $2,000 annually for individuals, $5,000 for Executives.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>5. Law Firm & Timekeeper Compliance (AI Controls)</h2>
-        <ul>
-            <li><strong>Rate Locking:</strong> You must lock in approved timekeeper rates during onboarding.</li>
-            <li><strong>Automated AI Rejections:</strong> Brightflag's AI automatically pre-screens and instantly rejects invoices containing unapproved timekeepers or rates exceeding locked thresholds before they hit Stage 1.</li>
         </ul>
     </div>
 
