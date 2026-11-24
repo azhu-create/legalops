@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal at IPX — Google Sites Visual Templates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    }
+
+    /* Google Sites Block Blueprint Overlay Styles */
+    .gs-blueprint-zone {
+      position: relative;
+      transition: outline 0.2s ease, background-color 0.2s ease;
+    }
+
+    .gs-blueprint-badge {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      z-index: 30;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background-color: #1e293b;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .gs-blueprint-badge.badge-left {
+      right: auto;
+      left: 12px;
+    }
+
+    .gs-blueprint-badge.badge-amber {
+      color: #fbbf24;
+      border-color: #fbbf24;
+    }
+
+    .blueprint-active .gs-blueprint-zone {
+      outline: 2px dashed rgba(56, 189, 248, 0.85);
+      outline-offset: -3px;
+    }
+
+    .blueprint-active .gs-blueprint-subzone {
+      outline: 1.5px dashed rgba(245, 158, 11, 0.85);
+      outline-offset: -2px;
+      position: relative;
+    }
+
+    .blueprint-active .gs-blueprint-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Smooth Collapsible Group transitions (mimicking Google Sites native Collapsible Group) */
+    .gs-collapsible-content {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows 0.24s ease-out;
+    }
+
+    .gs-collapsible-content.collapsed {
+      grid-template-rows: 0fr;
+    }
+
+    .gs-collapsible-inner {
+      overflow: hidden;
+    }
+
+    /* Subtle browser frame shadow */
+    .browser-frame {
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Custom scrollbar for build notes drawer */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ===================================================================== -->
+  <!-- TOP CONTROL BAR (Sticky Gallery Controller outside Google Sites)      -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+      
+      <!-- Title & Subtitle -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-300 shrink-0">
+            <!-- Google Sites Layout Icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="3" y1="9" x2="21" y2="9" />
+              <line x1="9" y1="21" x2="9" y2="9" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm sm:text-base font-bold tracking-tight text-white">Legal at IPX — Google Sites Visual Templates</h1>
+              <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                100% Native-Buildable
+              </span>
+            </div>
+            <p class="text-xs text-slate-400">Compare 3 layouts engineered for <span class="text-slate-300 font-medium">sites.google.com</span> constraints</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template Switcher Tabs -->
+      <div class="flex flex-wrap items-center gap-1.5 bg-slate-800/90 p-1 rounded-xl border border-slate-700/80" role="tablist" aria-label="Template Layouts">
+        <button
+          id="tab-btn-1"
+          onclick="switchTemplate(1)"
+          role="tab"
+          aria-selected="true"
+          class="template-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-indigo-600 text-white shadow-sm"
+        >
+          1. App-Launcher Hub
+        </button>
+        <button
+          id="tab-btn-2"
+          onclick="switchTemplate(2)"
+          role="tab"
+          aria-selected="false"
+          class="template-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/60"
+        >
+          2. Warm &amp; Friendly Portal
+        </button>
+        <button
+          id="tab-btn-3"
+          onclick="switchTemplate(3)"
+          role="tab"
+          aria-selected="false"
+          class="template-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/60"
+        >
+          3. Streamlined Row Layout
+        </button>
+      </div>
+
+      <!-- Blueprint Toggle & Build Notes Button -->
+      <div class="flex items-center justify-between sm:justify-end gap-3">
+        <!-- Toggle Switch: Show Google Sites Block Blueprints -->
+        <label class="inline-flex items-center gap-2.5 cursor-pointer select-none bg-slate-800/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 transition">
+          <input type="checkbox" id="blueprintToggle" onchange="toggleBlueprints(this.checked)" class="sr-only peer" />
+          <div class="relative w-9 h-5 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-500"></div>
+          <span class="text-xs font-medium text-slate-200">Show Google Sites Block Blueprints</span>
+        </label>
+
+        <!-- Build Notes Button -->
+        <button
+          onclick="toggleBuildNotes(true)"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-400/30 transition shrink-0"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <span>Google Sites Build Notes</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Active Template Context Pill Strip -->
+  <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-5 pb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600">
+    <div id="template-summary-banner" class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-indigo-600"></span>
+      <span><strong class="text-slate-800">Template 1 (App-Launcher Hub):</strong> Best for fast tool discovery — uses a dark Banner Header, 4 visual app icon tiles, and a 3+2 centered practice grid.</span>
+    </div>
+    <span class="text-slate-500 italic shrink-0">Tip: Click any shortcut, card, or accordion below to test interactions.</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SIMULATED GOOGLE SITES BROWSER CANVAS                                 -->
+  <!-- ===================================================================== -->
+  <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 pb-16 flex-1">
+    <div id="sites-canvas" class="browser-frame rounded-2xl overflow-hidden bg-white border border-slate-300/80 transition-all">
+
+      <!-- Realistic Browser Window Top Chrome -->
+      <div class="bg-slate-100 border-b border-slate-200 px-4 py-2 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+        </div>
+        <div class="flex-1 max-w-md mx-auto bg-white border border-slate-200/90 rounded-md px-3 py-1 text-[11px] text-slate-500 flex items-center justify-between shadow-2xs">
+          <span class="flex items-center gap-1.5 truncate">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="truncate">sites.google.com/ipx.com/intranet/legal</span>
+          </span>
+          <span class="text-[10px] text-slate-400 hidden sm:inline">Published</span>
+        </div>
+        <div class="text-[11px] font-medium text-slate-400 hidden sm:block">Google Sites</div>
+      </div>
+
+      <!-- Simulated Google Sites Top Navigation Bar -->
+      <nav class="gs-blueprint-zone bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-8 h-14 flex items-center justify-between sticky top-0 z-20">
+        <span class="gs-blueprint-badge badge-left">GS: Site Top Nav Bar (Fixed)</span>
+        <div class="flex items-center gap-3">
+          <button onclick="simulateNavigation('Intranet Sidebar Menu', 'Opens Google Sites left navigation drawer')" class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-md bg-slate-900 text-white font-display font-extrabold text-xs flex items-center justify-center tracking-tighter">
+              IPX
+            </div>
+            <span class="font-display font-bold text-slate-800 text-sm sm:text-base">IPX Intranet <span class="text-slate-300 font-normal mx-1">|</span> <span class="text-indigo-600">Legal</span></span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-5 text-xs sm:text-sm font-medium text-slate-600">
+          <button onclick="simulateNavigation('IPX Home', 'Navigates to main company intranet home')" class="hidden md:inline hover:text-slate-900">Home</button>
+          <button onclick="simulateNavigation('People & HR', 'Navigates to People team hub')" class="hidden md:inline hover:text-slate-900">People</button>
+          <button onclick="simulateNavigation('IT & Security', 'Navigates to IT helpdesk hub')" class="hidden md:inline hover:text-slate-900">IT &amp; Security</button>
+          <span class="hidden sm:inline text-indigo-600 font-semibold border-b-2 border-indigo-600 py-4">Legal</span>
+          <button onclick="simulateNavigation('Google Sites Built-in Search', 'Searches across all published IPX Intranet pages')" class="p-2 rounded-full hover:bg-slate-100 text-slate-600" aria-label="Search site">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- ================================================================= -->
+      <!-- TEMPLATE 1: APP-LAUNCHER HUB                                      -->
+      <!-- ================================================================= -->
+      <div id="template-1" class="template-view">
+        
+        <!-- Section 0: Hero Banner (Google Sites Style 3: Dark Brand Fill) -->
+        <section class="gs-blueprint-zone relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white px-6 sm:px-12 py-12 sm:py-16 overflow-hidden">
+          <span class="gs-blueprint-badge">GS: Banner Header • Section Style 3 (Dark Brand Fill)</span>
+          <!-- Decorative subtle vector grid -->
+          <svg class="absolute inset-0 w-full h-full opacity-10 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-t1" width="32" height="32" patternUnits="userSpaceOnUse">
+                <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-t1)" />
+          </svg>
+          <div class="relative max-w-4xl mx-auto text-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-200 border border-indigo-400/30 mb-4">
+              Internal Legal &amp; Commercial Portal
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-3">
+              Legal at IPX
+            </h2>
+            <p class="text-base sm:text-xl text-indigo-100/90 max-w-2xl mx-auto font-normal leading-relaxed">
+              Your hub for contracts, policies, and practical legal guidance.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 1: Top 4 Shortcuts (App-Launcher Tiles - Style 1 White) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-10 border-b border-slate-100">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 4-Col Content Block (3 Cols Each)</span>
+          <div class="max-w-5xl mx-auto">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Actions &amp; App Shortcuts</h3>
+              <span class="text-xs text-slate-400 hidden sm:inline">Click an app tile to launch</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              <!-- Shortcut 1: NDA Slide Deck -->
+              <button
+                onclick="simulateNavigation('Generate / Request an NDA', 'Opens Google Slides: IPX Self-Serve NDA Slide Deck & Generator')"
+                class="gs-blueprint-subzone group text-left rounded-2xl border border-slate-200/90 bg-white hover:border-amber-400 hover:shadow-lg hover:-translate-y-0.5 transition-all p-5 flex flex-col items-center text-center"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
+                  <!-- Google Slides / NDA Deck Icon -->
+                  <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <rect x="7" y="4" width="26" height="32" rx="4" fill="#F59E0B"/>
+                    <path d="M25 4L33 12H27C25.8954 12 25 11.1046 25 10V4Z" fill="#FDE68A"/>
+                    <rect x="12" y="16" width="16" height="10" rx="1.5" fill="white"/>
+                    <rect x="14.5" y="18.5" width="7" height="2" rx="1" fill="#F59E0B"/>
+                    <rect x="14.5" y="22" width="11" height="1.5" rx="0.75" fill="#FCD34D"/>
+                  </svg>
+                </div>
+                <div class="font-display font-bold text-slate-900 text-sm sm:text-base mb-1.5 group-hover:text-amber-700 transition-colors">
+                  Generate / Request an NDA
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/70">
+                  View NDA Slide Deck <span>→</span>
+                </span>
+              </button>
+
+              <!-- Shortcut 2: Submit a Contract (Evisort) -->
+              <button
+                onclick="simulateNavigation('Submit a Contract', 'Opens Evisort Contract Intake & Review Portal')"
+                class="gs-blueprint-subzone group text-left rounded-2xl border border-slate-200/90 bg-white hover:border-indigo-400 hover:shadow-lg hover:-translate-y-0.5 transition-all p-5 flex flex-col items-center text-center"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-indigo-50 border border-indigo-200/80 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
+                  <!-- Evisort Contract Badge Icon -->
+                  <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <rect x="5" y="5" width="30" height="30" rx="8" fill="#4F46E5"/>
+                    <path d="M13 13H27V16.5H16.8V18.5H25V21.8H16.8V24H27V27.5H13V13Z" fill="white"/>
+                    <circle cx="29" cy="11" r="4" fill="#38BDF8" stroke="#4F46E5" stroke-width="1.5"/>
+                  </svg>
+                </div>
+                <div class="font-display font-bold text-slate-900 text-sm sm:text-base mb-1.5 group-hover:text-indigo-700 transition-colors">
+                  Submit a Contract
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200/70">
+                  Open Evisort <span>→</span>
+                </span>
+              </button>
+
+              <!-- Shortcut 3: Look Up a Policy -->
+              <button
+                onclick="simulateNavigation('Look Up a Policy', 'Opens IPX Policy Hub & Compliance Directory')"
+                class="gs-blueprint-subzone group text-left rounded-2xl border border-slate-200/90 bg-white hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition-all p-5 flex flex-col items-center text-center"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
+                  <!-- Policy Shield/Book Icon -->
+                  <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <path d="M20 4L33 9.5V19C33 27.2 27.45 34.6 20 36.5C12.55 34.6 7 27.2 7 19V9.5L20 4Z" fill="#10B981"/>
+                    <path d="M15 20.5L18.3 23.8L25.5 16.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="font-display font-bold text-slate-900 text-sm sm:text-base mb-1.5 group-hover:text-emerald-700 transition-colors">
+                  Look Up a Policy
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/70">
+                  Browse Policy Hub <span>→</span>
+                </span>
+              </button>
+
+              <!-- Shortcut 4: Ask a Question (#topics-legal) -->
+              <button
+                onclick="simulateNavigation('Ask a Question', 'Launches Slack channel #topics-legal')"
+                class="gs-blueprint-subzone group text-left rounded-2xl border border-slate-200/90 bg-white hover:border-purple-400 hover:shadow-lg hover:-translate-y-0.5 transition-all p-5 flex flex-col items-center text-center"
+              >
+                <div class="w-16 h-16 rounded-2xl bg-purple-50 border border-purple-200/80 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-xs">
+                  <!-- Authentic 4-Color Slack Pinwheel Icon -->
+                  <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                    <!-- Blue -->
+                    <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                    <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                    <!-- Green -->
+                    <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                    <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                    <!-- Yellow -->
+                    <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                    <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                    <!-- Red/Pink -->
+                    <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                    <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                  </svg>
+                </div>
+                <div class="font-display font-bold text-slate-900 text-sm sm:text-base mb-1.5 group-hover:text-purple-700 transition-colors">
+                  Ask a Question
+                </div>
+                <span class="inline-flex items-center gap-1 text-xs font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200/70">
+                  Post in #topics-legal <span>→</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Who We Are & How We Help (Style 2 Soft Tint • 3 + 2 Centered Grid) -->
+        <section class="gs-blueprint-zone bg-slate-50/90 px-6 sm:px-12 py-12 border-b border-slate-200/70">
+          <span class="gs-blueprint-badge">GS: Section Style 2 (Tint) • 3 + 2 Centered 12-Col Grid</span>
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-9">
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+                Who We Are &amp; How We Help
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Legal at IPX helps teams move fast while protecting the company, our customers, and our people. Use the guide below to see when to loop us in:
+              </p>
+            </div>
+
+            <!-- Row 1: 3 Cards (4 Cols each) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+              <!-- Practice Area 1 -->
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs">
+                <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                  <!-- Handshake / Deals SVG -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 17a1 1 0 0 1 2 0c0 .5-.34 3-.5 4.5a.5.5 0 0 1-1 0c-.16-1.5-.5-4-.5-4.5Z"/>
+                    <path d="M8 14a5 5 0 1 1 8 0"/>
+                    <path d="M17 18.5a9 9 0 1 0-10 0"/>
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-slate-900 text-base mb-1.5">Selling &amp; Customer Deals</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">Customer MSAs, order form redlines, non-standard terms</p>
+              </div>
+
+              <!-- Practice Area 2 -->
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs">
+                <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                  <!-- Shopping Bag / Vendor SVG -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                    <path d="M3 6h18"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-slate-900 text-base mb-1.5">Buying &amp; Vendor Onboarding</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">New software/vendor contracts, renewals, DPAs</p>
+              </div>
+
+              <!-- Practice Area 3 -->
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs">
+                <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+                  <!-- Megaphone / Comms SVG -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 11 18-5v12L3 14v-3z"/>
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-slate-900 text-base mb-1.5">Marketing &amp; External Comms</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">Press releases, customer logos, public claims</p>
+              </div>
+            </div>
+
+            <!-- Row 2: 2 Centered Cards (2-col spacer + 4-col + 4-col + 2-col spacer in Google Sites) -->
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-5">
+              <div class="hidden md:block md:col-span-1"></div>
+              <!-- Practice Area 4 -->
+              <div class="gs-blueprint-subzone md:col-span-2 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs">
+                <div class="w-11 h-11 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
+                  <!-- Users / People SVG -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-slate-900 text-base mb-1.5">People, Workplace &amp; Ethics</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">Independent contractors, conflicts of interest, workplace policies</p>
+              </div>
+
+              <!-- Practice Area 5 -->
+              <div class="gs-blueprint-subzone md:col-span-2 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs">
+                <div class="w-11 h-11 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4">
+                  <!-- Shield Lock / Privacy SVG -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <rect x="9" y="10" width="6" height="5" rx="1"/>
+                    <path d="M10 10V8a2 2 0 1 1 4 0v2"/>
+                  </svg>
+                </div>
+                <h4 class="font-display font-bold text-slate-900 text-base mb-1.5">Data Privacy &amp; Risk</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">Customer/employee data sharing, AI tools, incident response</p>
+              </div>
+              <div class="hidden md:block md:col-span-1"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Self-Service Library (Style 1 White • 3 Native Collapsible Groups) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-12 border-b border-slate-200/70">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 3x Native Collapsible Groups</span>
+          <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-7 gap-2">
+              <div>
+                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Self-Service Library</h3>
+                <p class="text-sm text-slate-500 mt-1">Click any category header below to expand or collapse resources.</p>
+              </div>
+              <span class="text-xs font-medium text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md self-start sm:self-auto">
+                Uses Native Google Sites Accordions
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+              <!-- Column 1: Forms & Contract Review -->
+              <div class="gs-blueprint-subzone rounded-xl border border-slate-200 bg-slate-50/50 overflow-hidden">
+                <button
+                  onclick="toggleCollapsible(this)"
+                  class="w-full px-5 py-4 bg-white border-b border-slate-200/80 flex items-center justify-between text-left hover:bg-slate-50 transition"
+                >
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+                    Forms &amp; Contract Review
+                  </span>
+                  <svg class="chevron-icon w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <ul class="p-4 space-y-2.5 text-sm">
+                      <li>
+                        <button onclick="simulateNavigation('Submit a Contract or Request (Evisort)', 'Opens Evisort intake portal')" class="w-full text-left p-2.5 rounded-lg bg-white border border-slate-200/80 hover:border-indigo-400 hover:text-indigo-700 font-medium text-slate-800 flex items-center justify-between gap-2 transition">
+                          <span>Submit a Contract or Request (Evisort)</span>
+                          <span class="text-xs text-indigo-600 shrink-0">↗</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: Playbooks & Guides -->
+              <div class="gs-blueprint-subzone rounded-xl border border-slate-200 bg-slate-50/50 overflow-hidden">
+                <button
+                  onclick="toggleCollapsible(this)"
+                  class="w-full px-5 py-4 bg-white border-b border-slate-200/80 flex items-center justify-between text-left hover:bg-slate-50 transition"
+                >
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    Playbooks &amp; Guides
+                  </span>
+                  <svg class="chevron-icon w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <ul class="p-4 space-y-2 text-sm">
+                      <li>
+                        <button onclick="simulateNavigation('NDA Slide Deck', 'Opens self-serve NDA walkthrough slides')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-amber-400 hover:text-amber-800 font-medium text-slate-700 flex items-center justify-between transition">
+                          <span>NDA Slide Deck</span>
+                          <span class="text-[11px] px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 font-semibold">Slides</span>
+                        </button>
+                      </li>
+                      <li>
+                        <button onclick="simulateNavigation('Commercial Contracting Guide', 'Opens Commercial Contracting Playbook')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-amber-400 hover:text-amber-800 font-medium text-slate-700 flex items-center justify-between transition">
+                          <span>Commercial Contracting Guide</span>
+                          <span class="text-[11px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">Guide</span>
+                        </button>
+                      </li>
+                      <li>
+                        <button onclick="simulateNavigation('Vendor Onboarding Checklist', 'Opens Vendor Review & DPA Checklist')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-amber-400 hover:text-amber-800 font-medium text-slate-700 flex items-center justify-between transition">
+                          <span>Vendor Onboarding Checklist</span>
+                          <span class="text-[11px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold">Guide</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 3: Company Policies -->
+              <div class="gs-blueprint-subzone rounded-xl border border-slate-200 bg-slate-50/50 overflow-hidden">
+                <button
+                  onclick="toggleCollapsible(this)"
+                  class="w-full px-5 py-4 bg-white border-b border-slate-200/80 flex items-center justify-between text-left hover:bg-slate-50 transition"
+                >
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    Company Policies
+                  </span>
+                  <svg class="chevron-icon w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <ul class="p-4 space-y-2 text-sm">
+                      <li>
+                        <button onclick="simulateNavigation('Search All Policies', 'Opens full IPX Policy Hub')" class="w-full text-left px-3 py-2 rounded-lg bg-emerald-50/70 border border-emerald-200 hover:bg-emerald-100/70 font-semibold text-emerald-900 flex items-center justify-between transition">
+                          <span>Search All Policies</span>
+                          <span class="text-xs">→</span>
+                        </button>
+                      </li>
+                      <li>
+                        <button onclick="simulateNavigation('Code of Conduct', 'Opens IPX Code of Conduct')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-emerald-400 text-slate-700 font-medium transition">
+                          Code of Conduct
+                        </button>
+                      </li>
+                      <li>
+                        <button onclick="simulateNavigation('Acceptable Use & AI Policy', 'Opens Acceptable Use & Generative AI Policy')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-emerald-400 text-slate-700 font-medium transition">
+                          Acceptable Use &amp; AI Policy
+                        </button>
+                      </li>
+                      <li>
+                        <button onclick="simulateNavigation('Privacy Policy', 'Opens IPX Internal & Customer Privacy Policy')" class="w-full text-left px-3 py-2 rounded-lg bg-white border border-slate-200/80 hover:border-emerald-400 text-slate-700 font-medium transition">
+                          Privacy Policy
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: How to Reach Us (Style 2 Tint + Embed HTML Urgent Banner) -->
+        <section class="gs-blueprint-zone bg-slate-50 px-6 sm:px-12 py-12">
+          <span class="gs-blueprint-badge">GS: Section Style 2 (Tint) • 2-Col Cards + HTML Embed Callout</span>
+          <div class="max-w-5xl mx-auto">
+            <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight mb-6">How to Reach Us</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <!-- Slack Contact Card -->
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-6 border border-slate-200/90 shadow-2xs flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center shrink-0">
+                  <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                    <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                    <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                    <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                    <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                    <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                    <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                    <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                    <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <h4 class="font-display font-bold text-slate-900 text-base">Quick Questions</h4>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      ~1 business day
+                    </span>
+                  </div>
+                  <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                    Drop a message in <button onclick="simulateNavigation('#topics-legal', 'Opens Slack channel #topics-legal')" class="font-bold text-purple-700 underline decoration-purple-300 hover:text-purple-900">#topics-legal</button> (typical response: within 1 business day).
+                  </p>
+                  <button onclick="simulateNavigation('#topics-legal', 'Opens Slack channel #topics-legal')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-purple-700 bg-slate-100 hover:bg-purple-50 px-3 py-1.5 rounded-lg transition">
+                    Open Slack Channel <span>→</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Evisort Contact Card -->
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-6 border border-slate-200/90 shadow-2xs flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
+                  <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                    <rect x="5" y="5" width="30" height="30" rx="8" fill="#4F46E5"/>
+                    <path d="M13 13H27V16.5H16.8V18.5H25V21.8H16.8V24H27V27.5H13V13Z" fill="white"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <h4 class="font-display font-bold text-slate-900 text-base">Contract Reviews &amp; Formal Requests</h4>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                      3–5 business days
+                    </span>
+                  </div>
+                  <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                    Submit through <button onclick="simulateNavigation('Evisort', 'Opens Evisort Contract Review Portal')" class="font-bold text-indigo-700 underline decoration-indigo-300 hover:text-indigo-900">Evisort</button> (typical turnaround: 3–5 business days).
+                  </p>
+                  <button onclick="simulateNavigation('Evisort', 'Opens Evisort Contract Review Portal')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-1.5 rounded-lg transition">
+                    Submit in Evisort <span>→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urgent Matters Callout Banner (Google Sites Embed Code Block) -->
+            <div class="gs-blueprint-subzone rounded-xl bg-amber-50/90 border border-amber-200 border-l-4 border-l-rose-600 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-2xs">
+              <span class="gs-blueprint-badge badge-amber">GS: Embed HTML Block</span>
+              <div class="flex items-start gap-3.5">
+                <div class="w-9 h-9 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-slate-900 text-sm sm:text-base">Urgent Matters</h4>
+                  <p class="text-sm text-slate-700 leading-relaxed mt-0.5">
+                    If you have a time-critical deadline, regulatory notice, or urgent escalation, submit a ticket in <strong>Evisort</strong> and set the priority to <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-rose-600 text-white">Urgent / Critical</span>.
+                  </p>
+                </div>
+              </div>
+              <button onclick="simulateNavigation('Evisort — Urgent / Critical Priority', 'Opens Evisort intake pre-filtered for Urgent / Critical escalation')" class="shrink-0 px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-xs transition">
+                Escalate in Evisort
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- TEMPLATE 2: WARM & FRIENDLY PORTAL                                -->
+      <!-- ================================================================= -->
+      <div id="template-2" class="template-view hidden">
+        
+        <!-- Section 0: Warm Split-Hero (Google Sites Style 2: Warm Sand Tint) -->
+        <section class="gs-blueprint-zone bg-[#FAF7F2] px-6 sm:px-12 py-12 sm:py-14 border-b border-amber-900/10">
+          <span class="gs-blueprint-badge">GS: Section Style 2 (Warm Tint) • 7-Col Text + 5-Col Vector Graphic</span>
+          <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/10 text-teal-900 text-xs font-semibold mb-4">
+                <span>👋 Welcome to IPX Legal</span>
+              </div>
+              <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Legal at IPX
+              </h2>
+              <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-6 max-w-xl">
+                Your hub for contracts, policies, and practical legal guidance.
+              </p>
+              <div class="flex flex-wrap items-center gap-3">
+                <button onclick="simulateNavigation('Open Evisort', 'Opens Evisort Contract Intake Portal')" class="px-5 py-2.5 rounded-full bg-teal-800 hover:bg-teal-900 text-white text-sm font-semibold shadow-sm transition">
+                  Submit a Contract (Evisort)
+                </button>
+                <button onclick="simulateNavigation('#topics-legal', 'Opens Slack channel #topics-legal')" class="px-5 py-2.5 rounded-full bg-white hover:bg-amber-50 text-slate-800 border border-slate-300 text-sm font-semibold transition">
+                  Ask in #topics-legal
+                </button>
+              </div>
+            </div>
+
+            <!-- Friendly Custom Vector Illustration (Uploadable as a transparent PNG/SVG in Google Sites) -->
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="w-full max-w-xs bg-white rounded-3xl p-5 border border-amber-900/10 shadow-sm">
+                <svg viewBox="0 0 320 220" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="320" height="220" rx="20" fill="#F0FDFA"/>
+                  <!-- Decorative circles -->
+                  <circle cx="265" cy="45" r="28" fill="#FEF3C7"/>
+                  <circle cx="55" cy="175" r="22" fill="#CCFBF1"/>
+                  <!-- Document Card -->
+                  <rect x="65" y="34" width="130" height="152" rx="14" fill="white" stroke="#0F766E" stroke-width="2.5"/>
+                  <rect x="85" y="56" width="54" height="8" rx="4" fill="#0F766E"/>
+                  <rect x="85" y="74" width="90" height="6" rx="3" fill="#CBD5E1"/>
+                  <rect x="85" y="88" width="78" height="6" rx="3" fill="#CBD5E1"/>
+                  <rect x="85" y="102" width="84" height="6" rx="3" fill="#CBD5E1"/>
+                  <!-- Approved Stamp Badge -->
+                  <rect x="85" y="124" width="90" height="36" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+                  <path d="M102 142L108 148L120 136" stroke="#059669" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="128" y="139" width="34" height="6" rx="3" fill="#059669"/>
+                  <!-- Floating Chat Bubble -->
+                  <rect x="174" y="86" width="96" height="64" rx="16" fill="#0F766E"/>
+                  <path d="M194 150L184 162V150H194Z" fill="#0F766E"/>
+                  <circle cx="206" cy="118" r="5" fill="#FDE68A"/>
+                  <circle cx="222" cy="118" r="5" fill="white"/>
+                  <circle cx="238" cy="118" r="5" fill="#5EEAD4"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 1: Top 4 Shortcuts (Horizontal Image-Button Tiles - Style 1 White) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-10 border-b border-slate-100">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 4x Clickable Image-Button Tiles</span>
+          <div class="max-w-5xl mx-auto">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-teal-800/70 mb-4">Most Popular Shortcuts</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              
+              <!-- Tile 1 -->
+              <button onclick="simulateNavigation('Generate / Request an NDA', 'Opens NDA Slide Deck')" class="gs-blueprint-subzone group p-4 rounded-2xl bg-amber-50/60 hover:bg-amber-50 border border-amber-200/80 transition text-left flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-slate-900 text-sm leading-snug">Generate / Request an NDA</div>
+                  <div class="text-xs font-semibold text-amber-800 mt-0.5">View NDA Slide Deck →</div>
+                </div>
+              </button>
+
+              <!-- Tile 2 -->
+              <button onclick="simulateNavigation('Submit a Contract', 'Opens Evisort')" class="gs-blueprint-subzone group p-4 rounded-2xl bg-indigo-50/60 hover:bg-indigo-50 border border-indigo-200/80 transition text-left flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-slate-900 text-sm leading-snug">Submit a Contract</div>
+                  <div class="text-xs font-semibold text-indigo-700 mt-0.5">Open Evisort →</div>
+                </div>
+              </button>
+
+              <!-- Tile 3 -->
+              <button onclick="simulateNavigation('Look Up a Policy', 'Opens Policy Hub')" class="gs-blueprint-subzone group p-4 rounded-2xl bg-teal-50/60 hover:bg-teal-50 border border-teal-200/80 transition text-left flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-teal-700 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-slate-900 text-sm leading-snug">Look Up a Policy</div>
+                  <div class="text-xs font-semibold text-teal-800 mt-0.5">Browse Policy Hub →</div>
+                </div>
+              </button>
+
+              <!-- Tile 4 -->
+              <button onclick="simulateNavigation('Ask a Question', 'Opens Slack #topics-legal')" class="gs-blueprint-subzone group p-4 rounded-2xl bg-purple-50/60 hover:bg-purple-50 border border-purple-200/80 transition text-left flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-xl bg-white border border-purple-200 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                  <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+                    <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                    <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                    <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                    <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                    <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                    <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                    <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                    <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-display font-bold text-slate-900 text-sm leading-snug">Ask a Question</div>
+                  <div class="text-xs font-semibold text-purple-700 mt-0.5">Post in #topics-legal →</div>
+                </div>
+              </button>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Who We Are & How We Help (Asymmetric 4-Col Left + 8-Col Right Grid) -->
+        <section class="gs-blueprint-zone bg-[#FAF7F2] px-6 sm:px-12 py-12 border-b border-amber-900/10">
+          <span class="gs-blueprint-badge">GS: Section Style 2 (Warm Tint) • 4-Col Intro + 8-Col Practice Grid</span>
+          <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left 4 Columns: Editorial Intro -->
+            <div class="lg:col-span-4">
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+                Who We Are &amp; How We Help
+              </h3>
+              <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-5">
+                Legal at IPX helps teams move fast while protecting the company, our customers, and our people. Use the guide below to see when to loop us in:
+              </p>
+              <div class="p-4 rounded-2xl bg-white border border-amber-900/10 text-xs text-slate-600 leading-relaxed">
+                <strong class="text-teal-900 block mb-1">Not sure which area fits?</strong>
+                No problem—just ping us in <button onclick="simulateNavigation('#topics-legal', 'Opens Slack #topics-legal')" class="font-bold text-teal-800 underline">#topics-legal</button> and we’ll point you in the right direction.
+              </div>
+            </div>
+
+            <!-- Right 8 Columns: 5 Practice Areas -->
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-5 border border-amber-900/10 shadow-2xs">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-9 h-9 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">1</span>
+                  <h4 class="font-display font-bold text-slate-900 text-base">Selling &amp; Customer Deals</h4>
+                </div>
+                <p class="text-sm text-slate-600 pl-12">Customer MSAs, order form redlines, non-standard terms</p>
+              </div>
+
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-5 border border-amber-900/10 shadow-2xs">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-9 h-9 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm">2</span>
+                  <h4 class="font-display font-bold text-slate-900 text-base">Buying &amp; Vendor Onboarding</h4>
+                </div>
+                <p class="text-sm text-slate-600 pl-12">New software/vendor contracts, renewals, DPAs</p>
+              </div>
+
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-5 border border-amber-900/10 shadow-2xs">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-9 h-9 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center font-bold text-sm">3</span>
+                  <h4 class="font-display font-bold text-slate-900 text-base">Marketing &amp; External Comms</h4>
+                </div>
+                <p class="text-sm text-slate-600 pl-12">Press releases, customer logos, public claims</p>
+              </div>
+
+              <div class="gs-blueprint-subzone bg-white rounded-2xl p-5 border border-amber-900/10 shadow-2xs">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-9 h-9 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-sm">4</span>
+                  <h4 class="font-display font-bold text-slate-900 text-base">People, Workplace &amp; Ethics</h4>
+                </div>
+                <p class="text-sm text-slate-600 pl-12">Independent contractors, conflicts of interest, workplace policies</p>
+              </div>
+
+              <div class="gs-blueprint-subzone sm:col-span-2 bg-white rounded-2xl p-5 border border-amber-900/10 shadow-2xs">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="w-9 h-9 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-sm">5</span>
+                  <h4 class="font-display font-bold text-slate-900 text-base">Data Privacy &amp; Risk</h4>
+                </div>
+                <p class="text-sm text-slate-600 pl-12">Customer/employee data sharing, AI tools, incident response</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section 3: Self-Service Library (3 Resource Columns with Visual Headers) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-12 border-b border-slate-100">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 3x 4-Col Content Blocks</span>
+          <div class="max-w-5xl mx-auto">
+            <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight mb-7">Self-Service Library</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Col 1 -->
+              <div class="gs-blueprint-subzone rounded-2xl border border-slate-200 p-5 flex flex-col">
+                <div class="px-3 py-2 rounded-xl bg-indigo-50 text-indigo-900 font-display font-bold text-sm mb-4 flex items-center justify-between">
+                  <span>Forms &amp; Contract Review</span>
+                  <span class="text-[11px] font-semibold uppercase tracking-wide text-indigo-600">Intake</span>
+                </div>
+                <div class="space-y-2.5 flex-1">
+                  <button onclick="simulateNavigation('Submit a Contract or Request (Evisort)', 'Opens Evisort')" class="w-full text-left p-3 rounded-xl border border-slate-200 hover:border-indigo-400 hover:bg-indigo-50/40 transition">
+                    <div class="font-semibold text-sm text-slate-900">Submit a Contract or Request (Evisort)</div>
+                    <div class="text-xs text-slate-500 mt-0.5">Start a new legal or vendor review ticket →</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Col 2 -->
+              <div class="gs-blueprint-subzone rounded-2xl border border-slate-200 p-5 flex flex-col">
+                <div class="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 font-display font-bold text-sm mb-4 flex items-center justify-between">
+                  <span>Playbooks &amp; Guides</span>
+                  <span class="text-[11px] font-semibold uppercase tracking-wide text-amber-700">How-To</span>
+                </div>
+                <ul class="space-y-2 text-sm flex-1">
+                  <li>
+                    <button onclick="simulateNavigation('NDA Slide Deck', 'Opens NDA Slide Deck')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-amber-50/70 text-slate-800 font-medium flex items-center justify-between transition">
+                      <span>NDA Slide Deck</span>
+                      <span class="text-amber-700 text-xs font-bold">→</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="simulateNavigation('Commercial Contracting Guide', 'Opens Commercial Contracting Guide')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-amber-50/70 text-slate-800 font-medium flex items-center justify-between transition">
+                      <span>Commercial Contracting Guide</span>
+                      <span class="text-amber-700 text-xs font-bold">→</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="simulateNavigation('Vendor Onboarding Checklist', 'Opens Vendor Onboarding Checklist')" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-amber-50/70 text-slate-800 font-medium flex items-center justify-between transition">
+                      <span>Vendor Onboarding Checklist</span>
+                      <span class="text-amber-700 text-xs font-bold">→</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Col 3 -->
+              <div class="gs-blueprint-subzone rounded-2xl border border-slate-200 p-5 flex flex-col">
+                <div class="px-3 py-2 rounded-xl bg-teal-50 text-teal-900 font-display font-bold text-sm mb-4 flex items-center justify-between">
+                  <span>Company Policies</span>
+                  <span class="text-[11px] font-semibold uppercase tracking-wide text-teal-700">Standards</span>
+                </div>
+                <ul class="space-y-2 text-sm flex-1">
+                  <li>
+                    <button onclick="simulateNavigation('Search All Policies', 'Opens Policy Hub')" class="w-full text-left px-3 py-2 rounded-xl bg-teal-700 text-white font-semibold flex items-center justify-between hover:bg-teal-800 transition">
+                      <span>Search All Policies</span>
+                      <span>→</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="simulateNavigation('Code of Conduct', 'Opens Code of Conduct')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-teal-50 text-slate-800 font-medium transition">
+                      Code of Conduct
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="simulateNavigation('Acceptable Use & AI Policy', 'Opens Acceptable Use & AI Policy')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-teal-50 text-slate-800 font-medium transition">
+                      Acceptable Use &amp; AI Policy
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="simulateNavigation('Privacy Policy', 'Opens Privacy Policy')" class="w-full text-left px-3 py-2 rounded-xl hover:bg-teal-50 text-slate-800 font-medium transition">
+                      Privacy Policy
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: How to Reach Us (Style 3 Deep Teal Brand Fill) -->
+        <section class="gs-blueprint-zone bg-teal-950 text-white px-6 sm:px-12 py-12">
+          <span class="gs-blueprint-badge">GS: Section Style 3 (Deep Teal Brand Fill)</span>
+          <div class="max-w-5xl mx-auto">
+            <h3 class="text-2xl font-extrabold text-white tracking-tight mb-6">How to Reach Us</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+              <!-- Slack Card -->
+              <div class="gs-blueprint-subzone bg-white text-slate-900 rounded-2xl p-6 flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
+                  <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                    <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                    <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                    <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                    <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                    <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                    <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                    <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                    <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-slate-900 text-base mb-1">Quick Questions</h4>
+                  <p class="text-sm text-slate-600 leading-relaxed">
+                    Drop a message in <button onclick="simulateNavigation('#topics-legal', 'Opens Slack #topics-legal')" class="font-bold text-teal-800 underline">#topics-legal</button> (typical response: within 1 business day).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Evisort Card -->
+              <div class="gs-blueprint-subzone bg-white text-slate-900 rounded-2xl p-6 flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
+                  <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                    <rect x="5" y="5" width="30" height="30" rx="8" fill="#4F46E5"/>
+                    <path d="M13 13H27V16.5H16.8V18.5H25V21.8H16.8V24H27V27.5H13V13Z" fill="white"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-slate-900 text-base mb-1">Contract Reviews &amp; Formal Requests</h4>
+                  <p class="text-sm text-slate-600 leading-relaxed">
+                    Submit through <button onclick="simulateNavigation('Evisort', 'Opens Evisort')" class="font-bold text-indigo-700 underline">Evisort</button> (typical turnaround: 3–5 business days).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Urgent Matters Callout -->
+            <div class="gs-blueprint-subzone rounded-2xl bg-amber-50 text-slate-900 border-l-4 border-l-rose-600 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3">
+                <span class="text-rose-600 mt-0.5">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <p class="text-sm text-slate-800 leading-relaxed">
+                  <strong class="text-slate-950">Urgent Matters:</strong> If you have a time-critical deadline, regulatory notice, or urgent escalation, submit a ticket in <strong>Evisort</strong> and set the priority to <span class="px-2 py-0.5 rounded bg-rose-600 text-white text-xs font-bold">Urgent / Critical</span>.
+                </p>
+              </div>
+              <button onclick="simulateNavigation('Evisort — Urgent / Critical', 'Opens Urgent Evisort ticket')" class="shrink-0 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold transition">
+                Open Urgent Ticket
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- TEMPLATE 3: STREAMLINED ROW LAYOUT (Solves 5-Card Asymmetry)      -->
+      <!-- ================================================================= -->
+      <div id="template-3" class="template-view hidden">
+
+        <!-- Section 0: Compact Cobalt Banner + Docked 4-Column Quick Bar -->
+        <section class="gs-blueprint-zone bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-900 text-white px-6 sm:px-12 pt-10 pb-12">
+          <span class="gs-blueprint-badge">GS: Compact Banner Header + 4-Col Action Strip</span>
+          <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-8 border-b border-white/15">
+              <div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Legal at IPX</h2>
+                <p class="text-sm sm:text-base text-blue-100 mt-1.5">
+                  Your hub for contracts, policies, and practical legal guidance.
+                </p>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-medium text-blue-100 bg-white/10 px-3.5 py-2 rounded-xl border border-white/15 self-start">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Avg. Evisort SLA: 3–5 business days</span>
+              </div>
+            </div>
+
+            <!-- 4 Shortcuts inside the top dock -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-7">
+              <button onclick="simulateNavigation('Generate / Request an NDA', 'Opens NDA Slide Deck')" class="gs-blueprint-subzone bg-white text-slate-900 hover:bg-amber-50 rounded-xl p-3.5 flex items-center gap-3 text-left shadow-sm transition">
+                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 font-bold">
+                  <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="7" y="4" width="26" height="32" rx="4" fill="#F59E0B"/><rect x="12" y="16" width="16" height="10" rx="1.5" fill="white"/></svg>
+                </div>
+                <div class="min-w-0">
+                  <div class="font-display font-bold text-xs sm:text-sm truncate">Generate / Request NDA</div>
+                  <div class="text-[11px] font-semibold text-amber-700 truncate">View NDA Slide Deck →</div>
+                </div>
+              </button>
+
+              <button onclick="simulateNavigation('Submit a Contract', 'Opens Evisort')" class="gs-blueprint-subzone bg-white text-slate-900 hover:bg-indigo-50 rounded-xl p-3.5 flex items-center gap-3 text-left shadow-sm transition">
+                <div class="w-10 h-10 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0 font-bold">
+                  <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect x="5" y="5" width="30" height="30" rx="8" fill="#4F46E5"/><path d="M13 13H27V16.5H16.8V18.5H25V21.8H16.8V24H27V27.5H13V13Z" fill="white"/></svg>
+                </div>
+                <div class="min-w-0">
+                  <div class="font-display font-bold text-xs sm:text-sm truncate">Submit a Contract</div>
+                  <div class="text-[11px] font-semibold text-indigo-700 truncate">Open Evisort →</div>
+                </div>
+              </button>
+
+              <button onclick="simulateNavigation('Look Up a Policy', 'Opens Policy Hub')" class="gs-blueprint-subzone bg-white text-slate-900 hover:bg-emerald-50 rounded-xl p-3.5 flex items-center gap-3 text-left shadow-sm transition">
+                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold">
+                  <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><path d="M20 4L33 9.5V19C33 27.2 27.45 34.6 20 36.5C12.55 34.6 7 27.2 7 19V9.5L20 4Z" fill="#10B981"/><path d="M15 20.5L18.3 23.8L25.5 16.5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="min-w-0">
+                  <div class="font-display font-bold text-xs sm:text-sm truncate">Look Up a Policy</div>
+                  <div class="text-[11px] font-semibold text-emerald-700 truncate">Browse Policy Hub →</div>
+                </div>
+              </button>
+
+              <button onclick="simulateNavigation('Ask a Question', 'Opens Slack #topics-legal')" class="gs-blueprint-subzone bg-white text-slate-900 hover:bg-purple-50 rounded-xl p-3.5 flex items-center gap-3 text-left shadow-sm transition">
+                <div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center shrink-0">
+                  <svg width="24" height="24" viewBox="0 0 40 40" fill="none">
+                    <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                    <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                    <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                    <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                    <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                    <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                    <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                    <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                  </svg>
+                </div>
+                <div class="min-w-0">
+                  <div class="font-display font-bold text-xs sm:text-sm truncate">Ask a Question</div>
+                  <div class="text-[11px] font-semibold text-purple-700 truncate">Post in #topics-legal →</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Who We Are & How We Help (5 Streamlined Horizontal Rows — Zero Asymmetry!) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-12 border-b border-slate-200/80">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 5x Horizontal Rows (2-Col Icon + 10-Col Text)</span>
+          <div class="max-w-4xl mx-auto">
+            <div class="mb-8">
+              <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight mb-2">Who We Are &amp; How We Help</h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Legal at IPX helps teams move fast while protecting the company, our customers, and our people. Use the guide below to see when to loop us in:
+              </p>
+            </div>
+
+            <!-- 5 Clean Horizontal Rows separated by Google Sites native Dividers -->
+            <div class="divide-y divide-slate-200/80 border-y border-slate-200/80">
+              <!-- Row 1 -->
+              <div class="gs-blueprint-subzone py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 sm:w-2/5">
+                  <span class="w-9 h-9 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 17a1 1 0 0 1 2 0c0 .5-.34 3-.5 4.5a.5.5 0 0 1-1 0c-.16-1.5-.5-4-.5-4.5Z"/><path d="M8 14a5 5 0 1 1 8 0"/><path d="M17 18.5a9 9 0 1 0-10 0"/></svg>
+                  </span>
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base">Selling &amp; Customer Deals</span>
+                </div>
+                <div class="text-sm text-slate-600 sm:w-3/5">Customer MSAs, order form redlines, non-standard terms</div>
+              </div>
+
+              <!-- Row 2 -->
+              <div class="gs-blueprint-subzone py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 sm:w-2/5">
+                  <span class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                  </span>
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base">Buying &amp; Vendor Onboarding</span>
+                </div>
+                <div class="text-sm text-slate-600 sm:w-3/5">New software/vendor contracts, renewals, DPAs</div>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="gs-blueprint-subzone py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 sm:w-2/5">
+                  <span class="w-9 h-9 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                  </span>
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base">Marketing &amp; External Comms</span>
+                </div>
+                <div class="text-sm text-slate-600 sm:w-3/5">Press releases, customer logos, public claims</div>
+              </div>
+
+              <!-- Row 4 -->
+              <div class="gs-blueprint-subzone py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 sm:w-2/5">
+                  <span class="w-9 h-9 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </span>
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base">People, Workplace &amp; Ethics</span>
+                </div>
+                <div class="text-sm text-slate-600 sm:w-3/5">Independent contractors, conflicts of interest, workplace policies</div>
+              </div>
+
+              <!-- Row 5 -->
+              <div class="gs-blueprint-subzone py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 sm:w-2/5">
+                  <span class="w-9 h-9 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </span>
+                  <span class="font-display font-bold text-slate-900 text-sm sm:text-base">Data Privacy &amp; Risk</span>
+                </div>
+                <div class="text-sm text-slate-600 sm:w-3/5">Customer/employee data sharing, AI tools, incident response</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Self-Service Library (Style 2 Soft Ice Blue Tint • Full-Width Collapsible Accordions) -->
+        <section class="gs-blueprint-zone bg-blue-50/60 px-6 sm:px-12 py-12 border-b border-blue-100">
+          <span class="gs-blueprint-badge">GS: Section Style 2 (Tint) • Stacked Native Collapsible Groups</span>
+          <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight mb-6">Self-Service Library</h3>
+
+            <div class="space-y-3.5">
+              <!-- Accordion 1 -->
+              <div class="gs-blueprint-subzone bg-white rounded-xl border border-blue-200/80 overflow-hidden shadow-2xs">
+                <button onclick="toggleCollapsible(this)" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-indigo-100 text-indigo-800">Forms</span>
+                    <span class="font-display font-bold text-slate-900 text-base">Forms &amp; Contract Review</span>
+                  </div>
+                  <svg class="chevron-icon w-5 h-5 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <div class="px-5 pb-4 pt-1 border-t border-slate-100">
+                      <button onclick="simulateNavigation('Submit a Contract or Request (Evisort)', 'Opens Evisort')" class="text-sm font-semibold text-indigo-700 hover:underline flex items-center gap-1.5 py-1.5">
+                        <span>• Submit a Contract or Request (Evisort)</span>
+                        <span>↗</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion 2 -->
+              <div class="gs-blueprint-subzone bg-white rounded-xl border border-blue-200/80 overflow-hidden shadow-2xs">
+                <button onclick="toggleCollapsible(this)" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-800">Playbooks</span>
+                    <span class="font-display font-bold text-slate-900 text-base">Playbooks &amp; Guides</span>
+                  </div>
+                  <svg class="chevron-icon w-5 h-5 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <div class="px-5 pb-4 pt-2 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm">
+                      <button onclick="simulateNavigation('NDA Slide Deck', 'Opens NDA Slide Deck')" class="text-left p-2 rounded-lg hover:bg-amber-50 font-medium text-slate-800">• NDA Slide Deck →</button>
+                      <button onclick="simulateNavigation('Commercial Contracting Guide', 'Opens Commercial Contracting Guide')" class="text-left p-2 rounded-lg hover:bg-amber-50 font-medium text-slate-800">• Commercial Contracting Guide →</button>
+                      <button onclick="simulateNavigation('Vendor Onboarding Checklist', 'Opens Vendor Onboarding Checklist')" class="text-left p-2 rounded-lg hover:bg-amber-50 font-medium text-slate-800">• Vendor Onboarding Checklist →</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Accordion 3 -->
+              <div class="gs-blueprint-subzone bg-white rounded-xl border border-blue-200/80 overflow-hidden shadow-2xs">
+                <button onclick="toggleCollapsible(this)" class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-slate-50 transition">
+                  <div class="flex items-center gap-3">
+                    <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-800">Policies</span>
+                    <span class="font-display font-bold text-slate-900 text-base">Company Policies</span>
+                  </div>
+                  <svg class="chevron-icon w-5 h-5 text-slate-500 transition-transform duration-200 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="gs-collapsible-content">
+                  <div class="gs-collapsible-inner">
+                    <div class="px-5 pb-4 pt-2 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <button onclick="simulateNavigation('Search All Policies', 'Opens Policy Hub')" class="text-left p-2 rounded-lg bg-emerald-50/70 hover:bg-emerald-100 font-semibold text-emerald-900">• Search All Policies →</button>
+                      <button onclick="simulateNavigation('Code of Conduct', 'Opens Code of Conduct')" class="text-left p-2 rounded-lg hover:bg-slate-50 font-medium text-slate-800">• Code of Conduct →</button>
+                      <button onclick="simulateNavigation('Acceptable Use & AI Policy', 'Opens Acceptable Use & AI Policy')" class="text-left p-2 rounded-lg hover:bg-slate-50 font-medium text-slate-800">• Acceptable Use &amp; AI Policy →</button>
+                      <button onclick="simulateNavigation('Privacy Policy', 'Opens Privacy Policy')" class="text-left p-2 rounded-lg hover:bg-slate-50 font-medium text-slate-800">• Privacy Policy →</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: How to Reach Us (Style 1 White • Clean 3-Tier Escalation Stack) -->
+        <section class="gs-blueprint-zone bg-white px-6 sm:px-12 py-12">
+          <span class="gs-blueprint-badge">GS: Section Style 1 (White) • 3-Row Triage Matrix</span>
+          <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight mb-6">How to Reach Us</h3>
+
+            <div class="space-y-4">
+              <!-- Tier 1: Slack -->
+              <div class="gs-blueprint-subzone p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-11 h-11 rounded-xl bg-purple-50 flex items-center justify-center shrink-0">
+                    <svg width="26" height="26" viewBox="0 0 40 40" fill="none">
+                      <path d="M11.5 23.5C11.5 25.1569 10.1569 26.5 8.5 26.5C6.84315 26.5 5.5 25.1569 5.5 23.5C5.5 21.8431 6.84315 20.5 8.5 20.5H11.5V23.5Z" fill="#36C5F0"/>
+                      <path d="M13 23.5C13 21.8431 14.3431 20.5 16 20.5C17.6569 20.5 19 21.8431 19 23.5V31C19 32.6569 17.6569 34 16 34C14.3431 34 13 32.6569 13 31V23.5Z" fill="#36C5F0"/>
+                      <path d="M16 11.5C14.3431 11.5 13 10.1569 13 8.5C13 6.84315 14.3431 5.5 16 5.5C17.6569 5.5 19 6.84315 19 8.5V11.5H16Z" fill="#2EB67D"/>
+                      <path d="M16 13C17.6569 13 19 14.3431 19 16C19 17.6569 17.6569 19 16 19H8.5C6.84315 19 5.5 17.6569 5.5 16C5.5 14.3431 6.84315 13 8.5 13H16Z" fill="#2EB67D"/>
+                      <path d="M28.5 16C28.5 14.3431 29.8431 13 31.5 13C33.1569 13 34.5 14.3431 34.5 16C34.5 17.6569 33.1569 19 31.5 19H28.5V16Z" fill="#ECB22E"/>
+                      <path d="M27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16V8.5C21 6.84315 22.3431 5.5 24 5.5C25.6569 5.5 27 6.84315 27 8.5V16Z" fill="#ECB22E"/>
+                      <path d="M24 28.5C25.6569 28.5 27 29.8431 27 31.5C27 33.1569 25.6569 34.5 24 34.5C22.3431 34.5 21 33.1569 21 31.5V28.5H24Z" fill="#E01E5A"/>
+                      <path d="M24 27C22.3431 27 21 25.6569 21 24C21 22.3431 22.3431 21 24 21H31.5C33.1569 21 34.5 22.3431 34.5 24C34.5 25.6569 33.1569 27 31.5 27H24Z" fill="#E01E5A"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="font-display font-bold text-slate-900 text-base">Quick Questions</div>
+                    <p class="text-sm text-slate-600">Drop a message in <button onclick="simulateNavigation('#topics-legal', 'Opens Slack #topics-legal')" class="font-bold text-purple-700 underline">#topics-legal</button> (typical response: within 1 business day).</p>
+                  </div>
+                </div>
+                <button onclick="simulateNavigation('#topics-legal', 'Opens Slack #topics-legal')" class="shrink-0 px-3.5 py-2 rounded-lg border border-slate-300 hover:border-purple-400 text-xs font-semibold text-slate-800 transition">
+                  Post in Slack →
+                </button>
+              </div>
+
+              <!-- Tier 2: Standard Evisort -->
+              <div class="gs-blueprint-subzone p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
+                    <svg width="26" height="26" viewBox="0 0 40 40" fill="none"><rect x="5" y="5" width="30" height="30" rx="8" fill="#4F46E5"/><path d="M13 13H27V16.5H16.8V18.5H25V21.8H16.8V24H27V27.5H13V13Z" fill="white"/></svg>
+                  </div>
+                  <div>
+                    <div class="font-display font-bold text-slate-900 text-base">Contract Reviews &amp; Formal Requests</div>
+                    <p class="text-sm text-slate-600">Submit through <button onclick="simulateNavigation('Evisort', 'Opens Evisort')" class="font-bold text-indigo-700 underline">Evisort</button> (typical turnaround: 3–5 business days).</p>
+                  </div>
+                </div>
+                <button onclick="simulateNavigation('Evisort', 'Opens Evisort')" class="shrink-0 px-3.5 py-2 rounded-lg bg-blue-700 hover:bg-blue-800 text-xs font-semibold text-white transition">
+                  Open Evisort →
+                </button>
+              </div>
+
+              <!-- Tier 3: Urgent Matters -->
+              <div class="gs-blueprint-subzone p-5 rounded-2xl bg-amber-50 border border-amber-200 border-l-4 border-l-rose-600 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-4">
+                  <div class="w-11 h-11 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  </div>
+                  <div>
+                    <div class="font-display font-bold text-slate-900 text-base">Urgent Matters</div>
+                    <p class="text-sm text-slate-700">
+                      If you have a time-critical deadline, regulatory notice, or urgent escalation, submit a ticket in <strong>Evisort</strong> and set the priority to <span class="px-2 py-0.5 rounded bg-rose-600 text-white text-xs font-bold">Urgent / Critical</span>.
+                    </p>
+                  </div>
+                </div>
+                <button onclick="simulateNavigation('Evisort — Urgent / Critical', 'Opens Urgent Evisort ticket')" class="shrink-0 px-3.5 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-xs font-bold text-white transition">
+                  Urgent Ticket →
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Simulated Google Sites Footer -->
+      <footer class="bg-slate-100 border-t border-slate-200 px-6 sm:px-12 py-4 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <span>IPX Internal Intranet • Built on Google Sites</span>
+        <span>Last updated by IPX Legal Operations</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE LINK PREVIEW TOAST (Replaces alert() for clean UX)        -->
+  <!-- ===================================================================== -->
+  <div id="preview-toast" class="fixed bottom-5 right-5 z-50 max-w-sm w-full bg-slate-900 text-white rounded-2xl shadow-2xl border border-slate-700 p-4 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="flex items-start gap-3">
+      <div class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 flex items-center justify-center shrink-0 mt-0.5">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-[11px] font-bold uppercase tracking-wider text-indigo-300">Simulated Google Sites Link</div>
+        <div id="toast-title" class="font-display font-bold text-sm text-white truncate mt-0.5">Link Clicked</div>
+        <div id="toast-desc" class="text-xs text-slate-300 mt-0.5 leading-relaxed">Destination preview</div>
+      </div>
+      <button onclick="hideToast()" class="text-slate-400 hover:text-white p-1" aria-label="Close notification">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- GOOGLE SITES BUILD NOTES SLIDE-OVER DRAWER                            -->
+  <!-- ===================================================================== -->
+  <div id="build-notes-backdrop" onclick="toggleBuildNotes(false)" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-200"></div>
+  <aside id="build-notes-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-lg bg-white z-50 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="px-6 py-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600">Implementation Cheatsheet</span>
+        <h2 class="font-display font-extrabold text-lg text-slate-900">How to Build This in Google Sites</h2>
+      </div>
+      <button onclick="toggleBuildNotes(false)" class="p-2 rounded-lg hover:bg-slate-200/70 text-slate-600" aria-label="Close drawer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="p-6 overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed flex-1">
+      
+      <!-- Rule 1 -->
+      <div class="p-4 rounded-xl bg-indigo-50/70 border border-indigo-100">
+        <h3 class="font-display font-bold text-indigo-950 text-base mb-1.5">1. The "Image-as-Button" Trick (Top 4 Shortcuts)</h3>
+        <p class="text-slate-700">
+          Google Sites does not have native bordered cards with drop shadows. To get the sleek app tiles in <strong>Templates 1 &amp; 2</strong>:
+        </p>
+        <ul class="list-disc pl-5 mt-2 space-y-1 text-xs sm:text-sm text-slate-700">
+          <li>Create 4 small icon graphics (or full rectangular tiles) in <strong>Google Slides</strong> or <strong>Canva</strong> and export as transparent PNGs.</li>
+          <li>Drop a <strong>4-Column Content Block</strong> onto your page, upload each PNG, click the image, and click the <strong>Link (🔗)</strong> icon to turn the entire graphic into a button.</li>
+        </ul>
+      </div>
+
+      <!-- Rule 2 -->
+      <div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">2. Use the 3 Section Styles for Visual Rhythm</h3>
+        <p>
+          In Google Sites, click the paint palette icon on the left edge of any horizontal band to alternate between <strong>Style 1 (White)</strong>, <strong>Style 2 (Soft Tint)</strong>, and <strong>Style 3 (Bold Brand Fill)</strong>. Alternating these stops the page from looking like a long white Google Doc.
+        </p>
+      </div>
+
+      <!-- Rule 3 -->
+      <div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">3. Handling 5 Practice Areas on a 12-Column Grid</h3>
+        <p class="mb-2">Because 5 items don't divide evenly into 12 columns, each template solves this natively:</p>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-700">
+          <li><strong>Template 1 (3 + 2 Centered):</strong> Put 3 items in Row 1 (4 cols each). In Row 2, drag the 4th and 5th blocks to the center so 2 empty columns sit on the left and right.</li>
+          <li><strong>Template 2 (4 + 8 Split):</strong> Put the intro blurb in a 4-column block on the left, and stack the 5 areas on the right.</li>
+          <li><strong>Template 3 (5 Horizontal Rows):</strong> Use 5 stacked rows (2-col icon on left + 10-col text on right) separated by native <strong>Dividers</strong>. Zero alignment headaches!</li>
+        </ul>
+      </div>
+
+      <!-- Rule 4 -->
+      <div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">4. Native Collapsible Groups (Self-Service Library)</h3>
+        <p>
+          In the right-hand Insert panel, click <strong>Collapsible group</strong>. Create three side-by-side 4-column collapsible groups (<em>Forms &amp; Contract Review</em>, <em>Playbooks &amp; Guides</em>, <em>Company Policies</em>) so employees can expand only what they need.
+        </p>
+      </div>
+
+      <!-- Rule 5 -->
+      <div class="p-4 rounded-xl bg-amber-50 border border-amber-200">
+        <h3 class="font-display font-bold text-amber-950 text-base mb-1.5">5. Urgent Matters Banner (Embed Code Block)</h3>
+        <p class="text-slate-700 mb-2">
+          To get the red/amber left-bordered warning box for <strong>Urgent Matters</strong>, click <strong>Insert → Embed → Embed code</strong> and paste a lightweight HTML snippet with inline styles so it stands out from routine links.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex justify-end">
+      <button onclick="toggleBuildNotes(false)" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition">
+        Done Reading
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT CONTROLLER                                                 -->
+  <!-- ===================================================================== -->
+  <script>
+    const templateSummaries = {
+      1: {
+        dotColor: 'bg-indigo-600',
+        title: 'Template 1 (App-Launcher Hub):',
+        desc: 'Best for fast tool discovery — uses a dark Banner Header, 4 visual app icon tiles, and a 3+2 centered practice grid.'
+      },
+      2: {
+        dotColor: 'bg-teal-700',
+        title: 'Template 2 (Warm & Friendly Portal):',
+        desc: 'Best for an approachable, human tone — uses a split illustration hero, warm sand section bands, and horizontal image-button tiles.'
+      },
+      3: {
+        dotColor: 'bg-blue-700',
+        title: 'Template 3 (Streamlined Row Layout):',
+        desc: 'Best for zero grid asymmetry — solves the 5-practice-area layout with clean horizontal rows and stacked Google Sites accordions.'
+      }
+    };
+
+    /**
+     * Switches between the 3 Google Sites visual templates
+     */
+    function switchTemplate(templateNum) {
+      // Hide all templates
+      document.querySelectorAll('.template-view').forEach((el) => {
+        el.classList.add('hidden');
+      });
+
+      // Show selected template
+      const activeView = document.getElementById(`template-${templateNum}`);
+      if (activeView) {
+        activeView.classList.remove('hidden');
+      }
+
+      // Update tab button styles
+      document.querySelectorAll('.template-tab').forEach((btn, idx) => {
+        const isSelected = idx + 1 === templateNum;
+        btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          btn.className = 'template-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-indigo-600 text-white shadow-sm';
+        } else {
+          btn.className = 'template-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/60';
+        }
+      });
+
+      // Update context summary strip
+      const info = templateSummaries[templateNum];
+      const summaryBanner = document.getElementById('template-summary-banner');
+      if (info && summaryBanner) {
+        summaryBanner.innerHTML = `
+          <span class="inline-block w-2 h-2 rounded-full ${info.dotColor}"></span>
+          <span><strong class="text-slate-800">${info.title}</strong> ${info.desc}</span>
+        `;
+      }
+    }
+
+    /**
+     * Toggles the "Show Google Sites Block Blueprints" dashed overlay mode
+     */
+    function toggleBlueprints(isEnabled) {
+      const canvas = document.getElementById('sites-canvas');
+      if (!canvas) return;
+      if (isEnabled) {
+        canvas.classList.add('blueprint-active');
+      } else {
+        canvas.classList.remove('blueprint-active');
+      }
+    }
+
+    /**
+     * Mimics Google Sites' native Collapsible Group expand/collapse behavior
+     */
+    function toggleCollapsible(buttonEl) {
+      const content = buttonEl.nextElementSibling;
+      const chevron = buttonEl.querySelector('.chevron-icon');
+      if (!content) return;
+
+      content.classList.toggle('collapsed');
+      if (chevron) {
+        chevron.classList.toggle('rotate-180');
+      }
+    }
+
+    /**
+     * Opens/closes the Google Sites Build Notes slide-over drawer
+     */
+    function toggleBuildNotes(open) {
+      const backdrop = document.getElementById('build-notes-backdrop');
+      const drawer = document.getElementById('build-notes-drawer');
+      if (!backdrop || !drawer) return;
+
+      if (open) {
+        backdrop.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          backdrop.classList.remove('opacity-0');
+          drawer.classList.remove('translate-x-full');
+        });
+      } else {
+        backdrop.classList.add('opacity-0');
+        drawer.classList.add('translate-x-full');
+        setTimeout(() => {
+          backdrop.classList.add('hidden');
+        }, 250);
+      }
+    }
+
+    let toastTimer = null;
+
+    /**
+     * Displays a sleek non-blocking preview toast when a link/card is clicked
+     */
+    function simulateNavigation(title, description) {
+      const toast = document.getElementById('preview-toast');
+      const titleEl = document.getElementById('toast-title');
+      const descEl = document.getElementById('toast-desc');
+      if (!toast || !titleEl || !descEl) return;
+
+      titleEl.textContent = title;
+      descEl.textContent = description;
+
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        hideToast();
+      }, 3600);
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('preview-toast');
+      if (!toast) return;
+      toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+    }
+  </script>
+</body>
+</html>
